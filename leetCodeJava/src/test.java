@@ -1,8 +1,4 @@
-import algorithms.q905;
-import algorithms.q977;
-import algorithms.q905.*;
-
-import java.util.Arrays;
+import algorithms.*;
 
 
 public class test {
@@ -12,10 +8,13 @@ public class test {
 
 
 
-     var a= new q905();
-     int [] b ={1,3,2};
+        var a = new q944();
 
-     a.sortArrayByParity(b);
+        String[] b={"cba","daf","ghi"};
+
+
+        a.minDeletionSize(b);
+
 
     }
 }
