@@ -17,6 +17,7 @@ public class q561 {
             if (i % 2 == 0) {
 
                 tempArr[i / 2] = nums[i];
+
             }
         }
 
