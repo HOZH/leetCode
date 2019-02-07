@@ -1,19 +1,19 @@
-import algorithms.*;
-
-import java.util.Arrays;
-
-
-public class test{
+public class test {
 
 
     public static void main(String[] args) {
 
-
-       var a = new q973();
-
-       int [][] b ={{1,3},{-2,2}};
+        var a = "discuss.leetcode.com";
 
 
-        Arrays.stream(a.kClosest(b, 1)[0]).forEach(System.out::println);
+//        Arrays.stream(a.split("\\.")).forEach(System.out::println);
+        for (int i = 0; i < a.split("\\.").length; i++) {
+
+            System.out.println(a.split("\\.", 1)[0]);
+            System.out.println(a.split("\\.", 2)[1]);
+            System.out.println(a.split("\\.", 3)[2]);
+
+            break;
+        }
     }
 }

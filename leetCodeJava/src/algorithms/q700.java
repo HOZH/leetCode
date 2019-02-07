@@ -3,7 +3,7 @@ package algorithms;
 public class q700 {
 
 
-    public TreeNode searchBST(TreeNode root, int val) {
+    public q617.TreeNode searchBST(q617.TreeNode root, int val) {
 
         if (val == root.val) {
             return root;
@@ -23,12 +23,5 @@ public class q700 {
 }
 
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
 
-    TreeNode(int x) {
-        val = x;
-    }
-}
+
