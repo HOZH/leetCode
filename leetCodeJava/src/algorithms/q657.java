@@ -2,16 +2,8 @@ package algorithms;
 
 public class q657 {
 
-    public static void main(String[] args) {
 
-
-        System.out.println(judgeCircle("RLUURDDDLU"));
-
-
-    }
-
-
-    public static boolean judgeCircle(String moves) {
+    public boolean judgeCircle(String moves) {
 
         int x = 0;
         int y = 0;
