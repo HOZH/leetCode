@@ -1,25 +1,34 @@
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
 public class test {
 
 
+    static int b;
+
     public static void main(String[] args) throws IOException {
 
 
-        int[] a = {1, 2, 2};
-
-        HashSet set1 = new HashSet();
-        HashSet set2 = new HashSet();
 
 
 
+        var a = new ArrayList<Integer>();
+
+
+        System.out.println(a.size());
+
+//        System.out.println(a.get(0)==null);
+a.add(1);
+
+
+        System.out.println(a.get(0));
+
+        a.set(0,2);
+
+        System.out.println(a.get(0));
 
 
 
     }
-}
 
+}
