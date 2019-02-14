@@ -1,33 +1,46 @@
-import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Stack;
 
 public class test {
 
-
-    static int b;
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
+        List<Integer> tempList = new Stack<Integer>();
+        int temp = 0;
 
 
 
-        var a = new ArrayList<Integer>();
+        temp = 8;
+        while (true) {
+
+            if (temp % 2 == 00)
+                tempList.add(0);
+            else tempList.add(1);
+
+            temp = temp / 2;
 
 
-        System.out.println(a.size());
-
-//        System.out.println(a.get(0)==null);
-a.add(1);
+            if (temp == 0)
+                break;
 
 
-        System.out.println(a.get(0));
+        }
 
-        a.set(0,2);
+        var str="";
 
-        System.out.println(a.get(0));
+        System.out.println(     ((Stack<Integer>) tempList).pop());
+        System.out.println(     ((Stack<Integer>) tempList).pop());
+        System.out.println(     ((Stack<Integer>) tempList).pop());
+        System.out.println(     ((Stack<Integer>) tempList).pop());
 
-
+        while(tempList.size()!=0)
+        {
+            str+=((Stack<Integer>) tempList).pop();
+        }
 
     }
 
