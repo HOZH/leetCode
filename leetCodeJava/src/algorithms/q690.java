@@ -1,8 +1,10 @@
+package algorithms;
+
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
-public class test {
-
-
+public class q690 {
     class Employee {
         // It's the unique id of each node;
         // unique id of this employee
@@ -13,19 +15,12 @@ public class test {
         public List<Integer> subordinates;
     }
 
-    ;
-
-    public static void main(String[] args) {
 
 
-    }
-
-
-    public static int getImportance(List<Employee> employees, int id) {
-
-
+    public int getImportance(List<Employee> employees, int id) {
         Employee root = null;
-        for (Employee employee : employees) {
+        for (
+                Employee employee : employees) {
             if (employee.id == id) {
                 root = employee;
                 break;
@@ -60,7 +55,5 @@ public class test {
         }
 
         return result;
-
-
     }
 }
