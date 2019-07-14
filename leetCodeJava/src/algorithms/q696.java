@@ -1,16 +1,8 @@
-public class test {
+package algorithms;
 
-    //31236
-    public static void main(String[] args) {
+public class q696 {
 
-        var s =
-                "0001110001110011";
-        System.out.println(countBinarySubstrings(s));
-
-
-    }
-
-    public static int countBinarySubstrings(String s) {
+    public int countBinarySubstrings(String s) {
 
 
         int count = 0;
@@ -69,10 +61,9 @@ public class test {
 
                         if (second == first && first != 0) {
                             count += second;
-                            temp = second-1;
+                            temp = second - 1;
                         }
 //                        System.out.println(second);
-
 
 
                     }
