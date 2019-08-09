@@ -13,11 +13,28 @@
 class Solution:
 
 
-    def get_sum_of_greater_nums(self):
+    total=0
 
-        pass
 
-        
+
     def convertBST(self, root: TreeNode) -> TreeNode:
+
+        if root is not None:
+
+            self.convertBST(root.right)
+
+            self.total+=root.val
+
+            root.val=self.total
+
+
+            self.convertBST(root.left)
+
+
+        return root
+
+
+
+
         
 
