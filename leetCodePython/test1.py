@@ -33,3 +33,10 @@ a = [-2, 0, 3, -5, 2, -1]
 print(a[0:2+1])
 print(a[2:5+1], sum(a[2:5+1]))
 print(a[0:5+1], sum(a[0:5+1]))
+
+
+from math import *
+
+a=factorial(12)
+print(a>2147483647)
+print(a)
