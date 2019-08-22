@@ -37,6 +37,20 @@ print(a[0:5+1], sum(a[0:5+1]))
 
 from math import *
 
-a=factorial(12)
-print(a>2147483647)
-print(a)
+# a=factorial(12)
+# print(a>2147483647)
+# print(a)
+
+
+for i in range(4,-1,-1):
+    print(i)
+print(factorial(25))
+
+
+a=1808548329
+
+b=a//10
+print(b)
+
+for i in range(0,99,5):
+    print(i)
