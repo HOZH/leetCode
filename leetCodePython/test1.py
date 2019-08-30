@@ -1,63 +1,69 @@
+words = ["cat", "bb", "hat", "tree"]
+
+chars = "atach"
+
+
+
+# all( i for i in words[0] in chars)
+
+
+a=(1,1,1)
+
+print(all(i == 1 for i in a))
+
+print( all( i in chars for i in words[0]))
+print(all(i for i in words[1]) == "b")
+
+# print( chars.__contains__(all(i ==for i in words[1])))
+
+
+print("c" in "cat")
+
+
+from collections import Counter
+
+
+a= Counter("abbc")
+
+print(a)
+
+print(a["a"])
+print(a["d"])
+
+
+dic1 = dict()
+
+
+dic2=dic1.copy()
+
+
+dic2[1]=33
+
+print(dic1,dic2)
+
+
 from collections import *
 
 
-# a= ""
+a=(1,1,2,3,3,3)
 
-# b= a.split()
+c= Counter(a)
 
-# print(b[-1])
-
-
-from collections import *
-
-num = [1, 2, 3, 4, 5, 6, 7]
-k = 3
-
-dequeue = deque([1, 2, 3, 4, 5, 6, 7])
-
-
-dequeue.rotate(k)
-
-print(list(dequeue))
-
-
-n = 10
-# is_prime = [True]*n
-
-is_prime = [ True for i in range(10)]
-
-print(is_prime)
-
-
-print(set(range(5)))
+print(c)
+print(c.values())
+print(list(c.elements()))
+print(list(c.items()))
 
 
 
+A=["word","wo"]
+length = len(min(A, key=lambda x: len(x)))
 
-a = dict()
-
-a[1]="A"
-a[3] = "B"
-
-for i in a :
-
-    print(i,type(i))
+print(length)
 
 
-print(set([1, 2]) == set([2, 1])
-      )
+a="abc"
 
+a=[1,2,3,2]
 
-print(set(a))
-
-print(a.items(),a.values(),a.keys())
-
-
-# from collections import *
-
-
-# a= Counter((1,2,2,4))
-
-# print(a)
-
-# a.
+list(set(filter( lambda x:a.count(x)==2,a)))
