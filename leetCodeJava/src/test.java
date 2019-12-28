@@ -1,95 +1,57 @@
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+
 public class test {
 
-    //31236
+
     public static void main(String[] args) {
 
-        var s =
-                "0001110001110011";
-        System.out.println(countBinarySubstrings(s));
+
+` `        int[] arr = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
+
+
+        arr = eliminateDuplicate(arr);
+
+        for (int i : arr)
+            System.out.println(i);
+
+//        System.out.println(arr.toString());
 
 
     }
 
-    public static int countBinarySubstrings(String s) {
+
+    static int[] eliminateDuplicate(int[] list) {
 
 
-        int count = 0;
+//        var temp_set = new HashSet<>();
 
-        char[] chars = s.toCharArray();
+        var temp_set = new LinkedHashSet<>();
 
-        int first, second;
+        for (int i : list) {
 
-        int firstLen = 0;
-
-        first = 0;
-        second = 0;
-
-        char key;
-
-        int temp = 0;
-
-//        boolean firstHalf = true;
-
-        for (int i = 0; i < chars.length; i++) {
+            temp_set.add(i);
 
 
-            if (temp != 0) {
-
-                temp--;
-                continue;
-            }
-
-            key = chars[i];
-            firstLen = 0;
-
-            for (int j = i; j < chars.length; j++) {
-
-                if (chars[j] == key) {
-                    first++;
-                    firstLen++;
-                } else if (chars[j] != key) {
-
-                    key = chars[j];
-
-
-//                    System.out.println(firstLen);
-                    for (int k = j; k < (j + firstLen); k++) {
-
-
-                        if (k >= chars.length) {
-                            firstLen = 0;
-                            break;
-                        }
-                        if (chars[k] == key)
-                            second++;
-                        else {
-
-                            break;
-                        }
-
-                        if (second == first && first != 0) {
-                            count += second;
-                            temp = second-1;
-                        }
-//                        System.out.println(second);
-
-
-
-                    }
-
-
-                    break;
-
-                }
-
-
-            }
-
-            first = 0;
-            second = 0;
-            firstLen = 0;
         }
 
-        return count;
+
+//        var temp = new ArrayList<>();
+
+
+//            var result = new int[temp_set.size()];
+
+
+//        for(int i=0;i<temp_set.size();i++)
+//            result[i]=temp_set.
+//
+//            result
+
+        return Arrays.stream(temp_set.toArray()).mapToInt(t -> (int) t).toArray();
+
+
+//        return null;
     }
+
+
 }

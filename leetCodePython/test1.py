@@ -1,17 +1,19 @@
+from itertools import *
+from collections import *
+from collections import Counter
 words = ["cat", "bb", "hat", "tree"]
 
 chars = "atach"
 
 
-
 # all( i for i in words[0] in chars)
 
 
-a=(1,1,1)
+a = (1, 1, 1)
 
 print(all(i == 1 for i in a))
 
-print( all( i in chars for i in words[0]))
+print(all(i in chars for i in words[0]))
 print(all(i for i in words[1]) == "b")
 
 # print( chars.__contains__(all(i ==for i in words[1])))
@@ -20,10 +22,7 @@ print(all(i for i in words[1]) == "b")
 print("c" in "cat")
 
 
-from collections import Counter
-
-
-a= Counter("abbc")
+a = Counter("abbc")
 
 print(a)
 
@@ -34,20 +33,17 @@ print(a["d"])
 dic1 = dict()
 
 
-dic2=dic1.copy()
+dic2 = dic1.copy()
 
 
-dic2[1]=33
+dic2[1] = 33
 
-print(dic1,dic2)
-
-
-from collections import *
+print(dic1, dic2)
 
 
-a=(1,1,2,3,3,3)
+a = (1, 1, 2, 3, 3, 3)
 
-c= Counter(a)
+c = Counter(a)
 
 print(c)
 print(c.values())
@@ -55,15 +51,28 @@ print(list(c.elements()))
 print(list(c.items()))
 
 
-
-A=["word","wo"]
+A = ["word", "wo"]
 length = len(min(A, key=lambda x: len(x)))
 
 print(length)
 
 
-a="abc"
+a = "abc"
 
-a=[1,2,3,2]
+a = [1, 2, 3, 2]
 
-list(set(filter( lambda x:a.count(x)==2,a)))
+list(set(filter(lambda x: a.count(x) == 2, a)))
+
+nums = [1, 2, 3]
+
+
+for i in (combinations(nums, 2)):
+
+    print(i, list(i))
+
+
+for i in range(3, 1):
+    print(i)
+
+
+
