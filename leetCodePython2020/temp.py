@@ -1,10 +1,12 @@
 
+# √ (x2 − x1)2 + (y2 − y1)2
 
 
-a= [1,2,3,4,5]
 
+import math
 
-length = len(a)
+a=[1,2]
+b=[3,4]
 
-for i in range(length-3,-1,-1):
-    print(a[i:])
+c,d = a
+print(c,d)
