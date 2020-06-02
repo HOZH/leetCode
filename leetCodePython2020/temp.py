@@ -1,14 +1,6 @@
 
+a= [0,1,1]
+b = list(map(lambda x:1 if x ==0 else 0,a))
+print(b)
 
 
-
-
-limit = 5
-count =0
-while count<limit:
-    print(count)
-    count+=1
-    limit+=1
-
-
-print(limit)
