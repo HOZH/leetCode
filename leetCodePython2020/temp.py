@@ -1,12 +1,14 @@
 
-# √ (x2 − x1)2 + (y2 − y1)2
 
 
 
-import math
 
-a=[1,2]
-b=[3,4]
+limit = 5
+count =0
+while count<limit:
+    print(count)
+    count+=1
+    limit+=1
 
-c,d = a
-print(c,d)
+
+print(limit)
