@@ -1,6 +1,10 @@
 
-a= [0,1,1]
-b = list(map(lambda x:1 if x ==0 else 0,a))
-print(b)
 
+a=[0,1,2,3]
 
+for i in range(1,3):
+    print(a[i])
+
+import math
+
+print(math.factorial(10))
