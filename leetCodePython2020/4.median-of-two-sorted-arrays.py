@@ -58,6 +58,8 @@ class Solution:
         len_left, len_right = len(
             left1) + len(left2), len(right1) + len(right2)
 
+        # print(len_left, len_right)
+        #
         # print(left1, right1)
         # print(left2, right2)
         # return None
@@ -76,8 +78,10 @@ class Solution:
                     pivot1 = 0 + (len(right1 - 1) - 0) // 2
 
                     # fixme fixed
-                    left1, right1 = left1 + \
-                        right1[:pivot1 + 1], right1[pivot1 + 1:]
+                    left1, right1 = left1 + right1[:pivot1 + 1], right1[pivot1 + 1:]
+
+                elif right2[0] == right1[0]:
+                    left1, right1 = left1 + right1[:1], right1[1:]
 
                 else:
 
@@ -103,9 +107,15 @@ class Solution:
 
                         i2 = i2 if i2 != -1 else l2
                         # fixme fixed
-                        left1, left2, right1, right2 = left1 + right1[:pivot1 + 1], left2 + right2[:i2 + 1], right1[
-                            pivot1 + 1:], right2[
-                            i2 + 1:]
+                        left1, right1 = left1 + right1[:pivot1 + 1], right1[pivot1 + 1:]
+
+                        # len_left, len_right = len(
+                        #     left1) + len(left2), len(right1) + len(right2)
+                        #
+                        # if abs(len_left-len_right)>2:
+
+                        left2, right2 = left2 + right2[:i2 + 1], right2[i2 + 1:]
+
 
                     else:
                         pivot2 = 0 + (len(right2) - 1 - 0) // 2
@@ -129,9 +139,10 @@ class Solution:
 
                         i1 = i1 if i1 != -1 else l1
                         # fixme fixed
-                        left1, left2, right1, right2 = left1 + right1[:i1 + 1], left2 + right2[:pivot2 + 1], right1[
-                            i1 + 1:], right2[
-                            pivot2 + 1:]
+                        left1, right1 = left1 + right1[:i1 + 1], right1[i1 + 1:]
+                        left2, right2 = left2 + right2[:pivot2 + 1], right2[pivot2 + 1:]
+
+
 
             else:
 
@@ -140,14 +151,18 @@ class Solution:
 
                     # fixme fixed
 
-                    left1, right1 = left1[:pivot1 +
-                                          1], left1[pivot1 + 1:] + right1
+                    left1, right1 = left1[:pivot1 + 1], left1[pivot1 + 1:] + right1
+
 
                 elif len(left1) == 0:
                     i2 = 0 + (len(left2) - 1 - 0) // 2
 
                     # fixme fixed
                     left2, right2 = left2[:i2 + 1], left2[i2 + 1:] + right2
+
+                elif left1[-1] == left2[-1]:
+
+                    right1,left1 = [left1[-1]]+right1,left1[:-1]
 
                 else:
 
@@ -173,9 +188,11 @@ class Solution:
 
                         i2 = i2 if i2 != -1 else l2
                         # fixme fixed
-                        right1, right2, left1, left2 = left1[pivot1 + 1:] + right1, left2[i2 + 1:] + right2, left1[
-                            :pivot1 + 1], left2[
-                            :i2 + 1]
+                        right1, left1 = left1[pivot1 + 1:] + right1, left1[:pivot1 + 1]
+                        right2, left2 = left2[i2 + 1:] + right2, left2[:i2 + 1]
+
+
+
 
                     else:
                         pivot2 = 0 + (len(left2) - 1 - 0) // 2
@@ -199,13 +216,13 @@ class Solution:
 
                         i1 = i1 if i1 != -1 else l1
                         # fixme fixed
-                        right1, right2, left1, left2 = left1[i1 + 1:] + right1, left2[pivot2 + 1:] + right2, left1[
-                            :i1 + 1], left2[
-                            :pivot2 + 1]
+                        right1, left1 = left1[i1 + 1:] + right1, left1[:i1 + 1],
+                        right2, left2 = left2[pivot2 + 1:] + right2, left2[:pivot2 + 1]
 
             # print()
-            # print(left1,right1)
-            # print(left2,right2)
+            # print(left1, right1)
+            # print(left2, right2)
+            # import time
             # time.sleep(1)
             len_left, len_right = len(
                 left1) + len(left2), len(right1) + len(right2)
@@ -226,3 +243,7 @@ class Solution:
                                                                                              right2[0])
         else:
             return left1[-1] if len(left2) == 0 else left2[-1] if len(left1) == 0 else max(left1[-1], left2[-1])
+
+        
+# @lc code=end
+
