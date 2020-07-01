@@ -32,7 +32,6 @@ class Solution:
                 in_order(node.right)
 
         in_order(root)
-        print(self.arr)
         for i in range(len(self.arr)-1):
             if self.arr[i] >= self.arr[i+1]:
                 return False
