@@ -1,14 +1,3 @@
 
 
-
-
-from collections import Counter
-
-
-a=1
-
-
-
-
-foo(a)
-print(a)
+print([[0 for i in range(10)] for j in range(9)])
