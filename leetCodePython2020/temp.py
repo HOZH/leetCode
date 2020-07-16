@@ -1,6 +1,4 @@
 
 
-import statistics
-
-
-print(statistics.mean([1,2]))
+def foo(n):
+    return n=1
