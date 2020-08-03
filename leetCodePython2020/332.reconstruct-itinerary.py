@@ -28,7 +28,7 @@ class Solution:
 
             while len(d[start]) > 0:
 
-                temp = d[start
+                temp = d[start][0]
                 d[start] = d[start][1:]
 
                 helper(temp)
@@ -38,6 +38,5 @@ class Solution:
         helper('JFK')
 
         return route[::-1]
-
 
 # @lc code=end

@@ -14,8 +14,7 @@ class Solution:
 
         # initial vals with 1 boundaries on both side
         vals = [1]+nums+[1]
-        for i in range(length):
-            vals[i+1] = nums[i]
+
 
         # initial a memoization table
 

@@ -72,7 +72,7 @@ class Solution:
                 if boxes[i] == last_ele:
 
                     # if last_ele != (float('inf') if (i+1) >= r else boxes[i+1]):
-                    # in dp(l,i,k_1), boxes[i] == boxes[r] is already ensured by condition
+                    # in dp(l,i,k-1), boxes[i] == boxes[r] is already ensured by condition
                     # r-1 since we add the count of last element into i's count=>(k+1)
                     # boxes r-1 is not needed to have same value as boxes r
                     # even if they are the same, the sum is diff => 2,2 => 1*1 + 1*1 instead of 2*2
