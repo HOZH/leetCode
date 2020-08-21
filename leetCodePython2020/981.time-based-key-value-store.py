@@ -27,6 +27,8 @@ class TimeMap:
 
     def get(self, key: str, timestamp: int) -> str:
 
+        # should use binary search instead of heap to boost up the performance
+
         temp_heap = self.dic[key]
         place_holder = []
 

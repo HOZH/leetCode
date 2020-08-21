@@ -16,3 +16,5 @@ d = defaultdict(list)
 
 d['a'].append(1)
 print(d['a'])
+pass
+print(123)
