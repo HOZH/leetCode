@@ -5,36 +5,40 @@
 #
 
 # @lc code=start
-from collections import defaultdict, Counter
-import math
+
+
 class Solution:
     def kthSmallestPrimeFraction(self, A: List[int], K: int) -> List[int]:
 
-
-        A.sort()
         n = len(A)
+        l, r = 0, 1
+        while l < r:
+            m = (l+r)/2
+            max_f = 0
+            # how many eles samller than m
+            total = 0
+            # the row,col index of the max_f
+            # p, q = 0, 0
+            j = 1
 
-        l, r = 0, A[-1]-A[0]
-
-        while l <= r:
-            count = 0
-
-            j = 0
-
-            m = l + (r-l)//2
-
-            for i in range(n):
-                while (j < n and A[j]-A[i] <= m):
-                    # increase j until A[j] - A[i] >m
+            for i in range(n-1):
+                while j < n and A[i] > m*A[j]:
                     j += 1
-                # not zeroed out => count = previous count+ j-i-1
-                count += j - i - 1
 
-            if count >= K:
-                r = m-1
+                if j == n:
+                    break
+                total += n-j
+
+                f = A[i]/A[j]
+                if f > max_f:
+                    p, q, max_f = i, j, f
+
+            if total == K:
+                return [A[p], A[q]]
+            elif total > K:
+                r = m
             else:
-                l = m+1
-        return l
-        
-# @lc code=end
+                l = m
+        return []
 
+# @lc code=end
