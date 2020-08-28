@@ -14,49 +14,24 @@
 
 class Solution:
 
-    def rec_helper(self, node):
-
-        if node.next is None:
-
-            self.head = node
-            return node
-
-        else:
-            old_next = node.next
-            node.next = None
-            temp = self.rec_helper(old_next)
-            temp.next = node
-
-            return node
-
     def reverseList(self, head: ListNode) -> ListNode:
 
-        if head is None:
-            return None
+        self.first = None
 
-        current, prev = head, None
+        def helper(node):
+            if node is None:
+                return None
+            temp_next = node.next
+            node.next = None
+            temp = helper(temp_next)
+            if temp:
+                temp.next = node
+            else:
+                self.first = node
+            return node
 
-        while current.next:
+        helper(head)
+        return self.first
 
-            temp_next = current.next
-            temp = temp_next.next
-            current.next = prev
-
-            temp_next.next = current
-            prev = temp_next
-            if temp is None:
-                prev = current
-                current = temp_next
-
-                break
-            current = temp
-
-        current.next = prev
-
-        return current
-
-        # self.rec_helper(head)
-
-        # return self.head
 
 # @lc code=end

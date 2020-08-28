@@ -42,14 +42,6 @@ class Solution:
                     l1 = l1.next
                 if l2:
                     l2 = l2.next
-        # current = result
-        # while current:
-        #     if current.next:
-        #         if current.next.val == 0:
-        #             current.next == None
-        #             break
-        #     current = current.next
-
         result = result.next
         return result
 

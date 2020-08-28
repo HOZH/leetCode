@@ -18,7 +18,6 @@ class Solution:
         while current is not None:
             result.append(current.val)
             current = current.next
-
         return tuple(result)
 
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
@@ -28,7 +27,6 @@ class Solution:
         heapify(tuples)
 
         while len(tuples) > 0:
-
             temp = heappop(tuples)
             result.append(temp[0])
             if len(temp) > 1:
@@ -36,16 +34,12 @@ class Solution:
 
         if len(result) < 1:
             return None
-
         else:
-
             head = ListNode(result[0])
             current = head
-
             for i in result[1:]:
                 current.next = ListNode(i)
                 current = current.next
-
             return head
 
 
