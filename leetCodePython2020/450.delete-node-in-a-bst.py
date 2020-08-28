@@ -14,49 +14,49 @@
 
 
 class Solution:
-    def deleteNode_1(self, root: TreeNode, key: int) -> TreeNode:
+    # def deleteNode_1(self, root: TreeNode, key: int) -> TreeNode:
 
-        if root is None:
-            return root
+    #     if root is None:
+    #         return root
 
-        if key < root.val:
-            root.left = self.deleteNode_1(root.left, key)
-            return root
+    #     if key < root.val:
+    #         root.left = self.deleteNode_1(root.left, key)
+    #         return root
 
-        elif key > root.val:
-            root.right = self.deleteNode_1(root.right, key)
-            return root
+    #     elif key > root.val:
+    #         root.right = self.deleteNode_1(root.right, key)
+    #         return root
 
-        else:
-            # case root.val == key
+    #     else:
+    #         # case root.val == key
 
-            if root.left is None and root.right is None:
-                return None
+    #         if root.left is None and root.right is None:
+    #             return None
 
-            elif root.left is None or root.right is None:
-                return root.right if root.left is None else root.left
+    #         elif root.left is None or root.right is None:
+    #             return root.right if root.left is None else root.left
 
-            else:
+    #         else:
 
-                if root.right == None:
-                    replacement = root.left
-                    while replacement.right:
-                        replacement = replacement.right
+    #             if root.right == None:
+    #                 replacement = root.left
+    #                 while replacement.right:
+    #                     replacement = replacement.right
 
-                    root.val = replacement.val
-                    root.left = self.deleteNode_1(root.left, root.val)
+    #                 root.val = replacement.val
+    #                 root.left = self.deleteNode_1(root.left, root.val)
 
-                else:
+    #             else:
 
-                    replacement = root.right
+    #                 replacement = root.right
 
-                    while replacement.left:
-                        replacement = replacement.left
+    #                 while replacement.left:
+    #                     replacement = replacement.left
 
-                    root.val = replacement.val
-                    root.right = self.deleteNode_1(root.right, root.val)
+    #                 root.val = replacement.val
+    #                 root.right = self.deleteNode_1(root.right, root.val)
 
-                return root
+    #             return root
 
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
 
@@ -74,47 +74,34 @@ class Solution:
         else:
             # case root.val == key
 
+            # case no sub nodes -> just delete the node
             if root.left is None and root.right is None:
                 return None
 
+            # case one of the node is none -> just concatnate the remaining fork
             elif root.left is None or root.right is None:
                 return root.right if root.left is None else root.left
 
+            # case both sub fork exsit
             else:
 
-                if root.right == None:
-                    replacement = root.left
-                    parent = root
+                replacement = root.right
+                parent = root
 
-                    while replacement.right:
-                        parent = replacement
-                        replacement = replacement.right
+                while replacement.left:
+                    parent = replacement
+                    replacement = replacement.left
 
-                    temp_left = replacement.left
+                temp_right = replacement.right
 
-                    if root.left != replacement:
-                        replacement.left = root.left
-                    if root.right != replacement:
-                        replacement.right = root.right
+                # root.left sub-tree always only contains eles samller or equal to replacement
+                replacement.left = root.left
+                # avoid cycle
+                if root.right != replacement:
+                    replacement.right = root.right
 
-                    parent.right = temp_left
-                else:
-
-                    replacement = root.right
-                    parent = root
-
-                    while replacement.left:
-                        parent = replacement
-                        replacement = replacement.left
-
-                    temp_right = replacement.right
-
-                    if root.left != replacement:
-                        replacement.left = root.left
-                    if root.right != replacement:
-                        replacement.right = root.right
-
-                    parent.left = temp_right
+                # connect replacement's right sub-tree and replacement's parent node
+                parent.left = temp_right
                 return replacement
 
 

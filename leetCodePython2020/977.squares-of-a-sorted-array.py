@@ -10,17 +10,16 @@
 class Solution:
     def sortedSquares(self, A: List[int]) -> List[int]:
 
-        length = len(A)
+        length, a, b, result = len(A), -1, -1, []
+
         if length == 1:
             return [A[0]**2]
 
-        a, b = -1, -1
         for i in range(length):
             if A[i] >= 0:
                 a = i-1
                 b = i
                 break
-        result = []
 
         while a >= 0 and b < length:
             p1, p2 = A[a]**2, A[b]**2
@@ -31,6 +30,8 @@ class Solution:
             else:
                 result.append(p1)
                 a -= 1
+
+        # when one of the pointer reach the end, we mannually add the remaining eles to the end
         for i in range(a, -1, -1) if a > -1 else range(b, length):
             result.append(A[i]**2)
 
