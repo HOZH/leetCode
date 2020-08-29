@@ -1,3 +1,4 @@
+import re
 import functools
 
 
@@ -6,15 +7,26 @@ def foo(n):
     return 1
 
 
+s = "(N42)24(OB40Li30CHe3O48LiNN26)"
+
+current_search = re.search(r'\((.)*?\)\d*',s)
+# current_search = re.search(r'(?<=\()(.)*(?=\))\d*',s)
 
 
-import heapq
+print(current_search)
 
-from collections import defaultdict
+print(current_search.span())
+print(current_search.group())
+print(current_search.group(1))
 
-d = defaultdict(list)
+print(current_search.groups())
 
-d['a'].append(1)
-print(d['a'])
-pass
-print(123)
+
+current_search = re.search(r'\((.)*\)\d*',s)
+ignore_range = current_search.span()
+s_parameter = re.search(r'(?<=\()(.)*(?=\))',current_search.group()).group()
+ratio_parameter=re.search(r'(?<=(.))\d*$',s).group()
+
+print(ignore_range)
+print(s_parameter)
+print(type(ratio_parameter))
