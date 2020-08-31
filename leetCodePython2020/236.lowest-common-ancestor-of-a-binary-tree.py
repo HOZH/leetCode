@@ -18,7 +18,7 @@ class Solution:
 
         self.ans = None
 
-        def helper(node, a, b, x, y, flag):
+        def helper(node, a, b, x, y):
 
             # can add a determineter to end once the ans is found
             if node is None:
@@ -29,8 +29,8 @@ class Solution:
             if node == x:
                 y = True
 
-            left = helper(node.left, a, False, x, False, flag)
-            right = helper(node.right, a, False, x, False, flag)
+            left = helper(node.left, a, False, x, False)
+            right = helper(node.right, a, False, x, False)
 
             b = True if(b or left[0] or right[0]) else False
             y = True if(y or left[1] or right[1]) else False
@@ -41,7 +41,7 @@ class Solution:
 
             return b, y
 
-        helper(root, p, False, q, False, self.ans)
+        helper(root, p, False, q, False)
         return self.ans
 
 

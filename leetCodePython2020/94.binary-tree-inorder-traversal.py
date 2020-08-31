@@ -16,18 +16,36 @@
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
 
-        self.arr = []
+        # self.arr = []
 
-        def inorder(node):
-            if node is None:
-                return
+        # def inorder(node):
+        #     if node is None:
+        #         return
 
-            inorder(node.left)
-            self.arr.append(node.val)
-            inorder(node.right)
+        #     inorder(node.left)
+        #     self.arr.append(node.val)
+        #     inorder(node.right)
 
-        inorder(root)
+        # inorder(root)
 
-        return self.arr
+        # return self.arr
+
+        result = []
+        stack = []
+
+        current = root
+
+        while len(stack) or current:
+
+            while current:
+                stack.append(current)
+                current = current.left
+
+            current = stack.pop()
+            result.append(current.val)
+            current = current.right
+
+        return result
+
 
 # @lc code=end

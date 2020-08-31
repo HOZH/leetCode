@@ -15,16 +15,12 @@
 
 class Solution:
     def sumNumbers(self, root: TreeNode) -> int:
-
         self.ans = 0
 
         def helper(node, s, ans):
-
             if node is None:
                 return
-
             s = s*10+node.val
-
             if node.left is None and node.right is None:
                 self.ans += s
                 return
@@ -33,7 +29,6 @@ class Solution:
             helper(node.right, s, ans)
 
         helper(root, 0, self.ans)
-
         return self.ans
 
 
