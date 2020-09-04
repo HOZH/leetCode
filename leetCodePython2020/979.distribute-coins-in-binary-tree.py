@@ -24,7 +24,10 @@ class Solution:
             left_val = helper(node.left)
             right_val = helper(node.right)
             current_val = node.val+left_val+right_val
-            self.ans += abs(current_val-1)
+            # how many coins needed to be conveyed to parent or get from parent
+            # self.ans += abs(current_val-1)
+            # how many steps subs needed
+            self.ans += abs(left_val)+abs(right_val)
             return current_val-1
 
         helper(root)

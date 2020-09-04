@@ -16,6 +16,14 @@ class Solution:
         wordList = set(wordList)
         self.pos_cache = dict()
 
+        def matched(a, b):
+            count = 0
+            for i in range(len(a)):
+                if a[i] == b[i]:
+                    continue
+                else:
+                    count += 1
+
         if endWord not in wordList:
             return 0
 
@@ -24,47 +32,29 @@ class Solution:
         step = 0
         while len(queue) > 0:
             local_set = set()
-            # print(queue)
             step += 1
-            # if step > self.default_len+1:
-            #     break
 
-            for k in range(len(queue)):
-                    current = queue.popleft()
-                # print(current)
-                    if current == endWord:
-                        return step + 1
+            for _ in range(len(queue)):
+                current = queue.popleft()
+                if current == endWord:
+                    return step + 1
 
-                # if 1 == 1:
+                for i in range(len(current)):
+                    for j in range(97, 123):
+                        ch = chr(j)
+                        if ch != current[i]:
+                            temp = current[:i] + ch + current[i + 1:]
 
-                    # if current not in self.pos_cache:
-                    #     self.pos_cache[current] = []
+                            if temp in wordList:
+                                wordList.remove(temp)
 
-                    for i in range(len(current)):
-                        for j in range(97, 123):
-                            ch = chr(j)
-                            if ch != current[i]:
-                                temp = current[:i] + ch + current[i + 1:]
-                                # temp = [*current]
-                                # temp[i]=ch
-                                # temp = ''.join(temp)
-                                if temp in wordList:
-                                    wordList.remove(temp)
-
-                                    if temp not in local_set:
-                                        # if temp in wordList:
-                                        if temp == endWord:
-                                            return step + 1
-                                        else:
-                                            # if temp not in local_set:
-                                            # self.pos_cache[current].append(temp)
-                                            queue.append(temp)
-                                            local_set.add(temp)
-
-                # else:
-                    # print('used')
-
-                    # queue.extend(self.pos_cache[current])
-
+                                if temp not in local_set:
+                                    if temp == endWord:
+                                        return step + 1
+                                    else:
+                                        queue.append(temp)
+                                        local_set.add(temp)
         return 0
+
+
 # @lc code=end
