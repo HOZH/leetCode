@@ -30,18 +30,18 @@ class Solution:
 
         self.ans = []
 
-        def p(nums, target_count, depth, used, current_list, ans):
-            if depth == target_count:
+        def p(nums,target_count,depth,used,current_list, ans):
+            if depth==target_count:
                 ans.append(current_list)
                 return
             for i in range(len(nums)):
                 if used[i]:
                     continue
-                used[i] = True
+                used[i]=True
                 current_list.append(nums[i])
-                p(nums, target_count, depth+1, used, current_list[:], ans)
+                p(nums,target_count,depth+1,used,current_list[:],ans)
                 current_list.pop()
-                used[i] = False
+                used[i]=False
 
         p(nums,len(nums),0,[False]*len(nums),[],self.ans)
         return self.ans

@@ -11,8 +11,8 @@ class Solution:
     def shortestSuperstring(self, A: List[str]) -> str:
 
         length = len(A)
-        
-        #same chars at the ending of a and the beginging of b
+
+        # same chars at the ending of a and the beginging of b
         temp = [[0 for _ in range(length)] for _ in range(length)]
 
         #
