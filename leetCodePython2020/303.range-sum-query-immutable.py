@@ -42,10 +42,8 @@ class NumArray:
         else:
             if i == j:
                 return self.nums[i]
-
             if i == 0:
                 return self.one_d[j]
-
             else:
                 return self.one_d[j]-self.one_d[i-1]
 

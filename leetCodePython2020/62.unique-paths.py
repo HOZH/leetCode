@@ -23,31 +23,31 @@ class Solution:
 
         return result[-1][-1]
 
-    def uniquePaths_temp(self, m: int, n: int) -> int:
+    # def uniquePaths_temp(self, m: int, n: int) -> int:
 
-        result = [[0 for _ in range(m)] for _ in range(n)]
-        result[0][0] = 1
+    #     result = [[0 for _ in range(m)] for _ in range(n)]
+    #     result[0][0] = 1
 
-        queue = deque([(0, 0)])
+    #     queue = deque([(0, 0)])
 
-        while len(queue) > 0:
+    #     while len(queue) > 0:
 
-            i, j = queue.popleft()
+    #         i, j = queue.popleft()
 
-            if result[i][j] != 0 and i != 0 and j != 0:
-                continue
+    #         if result[i][j] != 0 and i != 0 and j != 0:
+    #             continue
 
-            if i > 0:
-                result[i][j] += result[i - 1][j]
+    #         if i > 0:
+    #             result[i][j] += result[i - 1][j]
 
-            if j > 0:
-                result[i][j] += result[i][j - 1]
+    #         if j > 0:
+    #             result[i][j] += result[i][j - 1]
 
-            if (i + 1) < n:
-                queue.append((i + 1, j))
+    #         if (i + 1) < n:
+    #             queue.append((i + 1, j))
 
-            if (j + 1) < m:
-                queue.append((i, j + 1))
+    #         if (j + 1) < m:
+    #             queue.append((i, j + 1))
 
-        return result[-1][-1]
+    #     return result[-1][-1]
 # @lc code=end
