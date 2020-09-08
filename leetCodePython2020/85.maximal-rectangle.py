@@ -21,10 +21,8 @@ class Solution:
             for j in range(col_c):
                 if matrix[i][j] == '0':
                     dp[i][j] = 0
-
                 else:
-                    dp[i][j] = 0 if matrix[i][j] == '0' else (
-                        (0 if j == 0 else dp[i][j-1])+1)
+                    dp[i][j] = (0 if j == 0 else dp[i][j-1])+1
         ans = 0
 
         for i in range(row_c):
