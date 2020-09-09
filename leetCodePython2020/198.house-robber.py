@@ -20,10 +20,9 @@ class Solution:
             temp = i-2
             if temp < 0:
                 ans[i] = max(0+nums[i], ans[i-1])
-
             else:
-
                 ans[i] = max(ans[temp]+nums[i], ans[i-1])
-        return max(ans)
+
+        return ans[-1]
 
 # @lc code=end
