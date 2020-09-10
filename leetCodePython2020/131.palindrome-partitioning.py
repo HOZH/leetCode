@@ -6,10 +6,12 @@
 
 # @lc code=start
 
+from functools import lru_cache
+
 
 class Solution:
 
-    def partition(self, s: str):
+    def partition_temp(self, s: str):
         if len(s) == 0:
             return [[]]
         record = dict()
@@ -76,5 +78,24 @@ class Solution:
 
         return helper(s)
 
+    @lru_cache(None)
+    def partition(self, s: str):
+
+        if len(s) == 0:
+            return tuple()
+        if len(s) == 1:
+            return tuple((s,))
+
+        result = []
+        if s == s[::-1]:
+            result.append([s])
+        for i in range(1, len(s) + 1):
+            temp = s[:i]
+            p = temp == temp[::-1]
+            if p:
+                temp_tuple = self.partition(s[i:])
+                for j in temp_tuple:
+                    result.append([temp] + list(j))
+        return tuple(result)
 
 # @lc code=end

@@ -8,19 +8,45 @@
 
 
 class Solution:
-    def minHeightShelves(self, books, shelf_width: int) -> int:
-        dp = [1000001]*len(books)
-        for j in range(len(books)):
+    def minHeightShelves_wrong_since_only_consider_the_prev_1_book(self, books, shelf_width: int) -> int:
+        len_books = len(books)
+        if not len_books:
+            return 0
+        dp = [[[] for _ in range(2)] for _ in range(len_books)]
+        # dp [ith][new layer] = current_height,remain_width,total_height
+        # thickness books[i][0] and height books[i][1].
+        inf = float('inf')
+        dp[0][0] = 1001, -1, inf
+        dp[0][1] = books[0][1], shelf_width-books[0][0], books[0][1]
 
-            w = 0
-            h = 0
+        for i in range(1, len_books):
+            # no enough width for appending book into current layer
+            if dp[i-1][0][1] < books[i][0] and dp[i-1][1][1] < books[i][0]:
+                dp[i][0] = (inf, -1, inf)
+            else:
+                on_prev_append = (inf, -1, inf) if dp[i-1][0][1] < books[i][0] else (max(books[i][1], dp[i-1][0][0]),
+                                                                                     dp[i-1][0][1]-books[i][0], dp[i-1][0][2]-dp[i-1][0][0]+max(books[i][1], dp[i-1][0][0]))
+                on_prev_new = (inf, -1, inf) if dp[i-1][1][1] < books[i][0] else (max(books[i][1], dp[i-1][1][0]),
+                                                                                  dp[i-1][1][1]-books[i][0], dp[i-1][1][2]-dp[i-1][1][0]+max(books[i][1], dp[i-1][1][0]))
+                dp[i][0] = min(on_prev_append, on_prev_new, key=lambda x: x[2])
+            dp[i][1] = books[i][1], shelf_width - \
+                books[i][0], min(dp[i-1][0][2], dp[i-1][1][2])+books[i][1]
+        return min(dp[-1][0][2], dp[-1][1][2])
+
+    def minHeightShelves(self, books, shelf_width: int) -> int:
+        dp = [1000**2+1]*len(books)
+        for j in range(len(books)):
+            max_h, current_width = 0, 0
+
             for i in range(j, -1, -1):
 
-                w += books[i][0]
-                if w > shelf_width:
+                current_width += books[i][0]
+
+                if current_width > shelf_width:
                     break
-                h = max(books[i][1], h)
-                dp[j] = min(dp[j], (0 if i == 0 else dp[i - 1]) + h)
+
+                max_h = max(max_h, books[i][1])
+                dp[j] = min(dp[j], (0 if i == 0 else dp[i-1])+max_h)
 
         return dp[-1]
 

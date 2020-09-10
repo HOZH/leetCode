@@ -1,10 +1,9 @@
-s = "()())()(("
 
-l,r =0,0
-for ch in s:
-    l+=ch=='('
-    if l==0:
-        r+=ch==')'
-    else:
-        l-=ch==')'
-print(l,r)
+
+
+
+
+
+
+
+print(min([1, 9], [2, 3], key=lambda x: x[1]))
