@@ -1,9 +1,6 @@
 
 
 
-
-
-
-
-
-print(min([1, 9], [2, 3], key=lambda x: x[1]))
+a=[[1,2,3],[4,5,6]]
+temp = sum([ sum(i) for i in a])
+print(temp)

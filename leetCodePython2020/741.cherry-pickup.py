@@ -8,7 +8,8 @@
 
 
 class Solution:
-    def cherryPickup(self, grid: List[List[int]]) -> int:
+
+    def cherryPickup_temp(self, grid: List[List[int]]) -> int:
 
         n = len(grid)
         memo = [[[-2 for _ in range(n)] for _ in range(n)] for _ in range(n)]
