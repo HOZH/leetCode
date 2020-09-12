@@ -9,7 +9,7 @@ from collections import deque
 
 
 class Solution:
-
+    # bfs for finding shorest path in unweighted graph
     def minMutation(self, start: str, end: str, bank) -> int:
         self.default_len = len(bank)
         bank = set(bank)
@@ -23,42 +23,27 @@ class Solution:
         step = 0
         while len(queue) > 0:
             local_set = set()
-            # print(queue)
             step += 1
-            # if step > self.default_len+1:
-            #     break
-
             for k in range(len(queue)):
                 current = queue.popleft()
-            # print(current)
                 if current == end:
-                    return step 
-
-            # if 1 == 1:
-
-                # if current not in self.pos_cache:
-                #     self.pos_cache[current] = []
+                    return step
 
                 for i in range(len(current)):
-                    for ch in ['A','C','G','T']:
+                    for ch in ['A', 'C', 'G', 'T']:
                         if ch != current[i]:
                             temp = current[:i] + ch + current[i + 1:]
-                            # temp = [*current]
-                            # temp[i]=ch
-                            # temp = ''.join(temp)
+
                             if temp in bank:
                                 bank.remove(temp)
 
                                 if temp not in local_set:
-                                    # if temp in bank:
                                     if temp == end:
                                         return step
                                     else:
 
                                         queue.append(temp)
                                         local_set.add(temp)
-
-
 
         return -1
 # @lc code=end

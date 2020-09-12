@@ -14,7 +14,6 @@ class Solution:
         roots = dict()
         rank = dict()
 
-        # each vertex points to itself at beginning
         for i, j in edges:
             roots[i] = i
             roots[j] = j
@@ -23,12 +22,10 @@ class Solution:
 
         def find(a):
 
-            x = a
-            while roots[x] != x:
-                roots[x] = roots[roots[x]]
-                x = roots[x]
-
-            return roots[x]
+            while roots[a] != a:
+                roots[a] = roots[roots[a]]
+                a = roots[a]
+            return a
 
         for i, j in edges:
 
@@ -37,15 +34,12 @@ class Solution:
             if pi == pj:
                 return [i, j]
 
-            if rank[pi] > rank[pj]:
-
+            elif rank[pi] > rank[pj]:
                 roots[pj] = pi
-
             elif rank[pi] < rank[pj]:
                 roots[pi] = pj
 
             else:
-
                 roots[pj] = roots[pi]
                 rank[pi] += 1
 

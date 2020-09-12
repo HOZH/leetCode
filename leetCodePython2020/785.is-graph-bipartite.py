@@ -14,62 +14,41 @@ from collections import defaultdict, deque
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
 
-        if len(graph) == 0:
+        if len(graph) < 2:
             return True
-
-        # if all(len(i) == 0 for i in graph):
-        #     return True
-
-        # construct adjacency lists
-
-        # g = defaultdict(list)
-
-        # for i in range(len(graph)):
-        #     g[i].extend(graph[i])
-
         colors = [0]*len(graph)
-        # bfs
 
+        # bfs
         # pick arbitrary starting point
 
         for i in range(len(graph)):
-
-            if colors[i] == 0 and len(graph[i]) != 0:
+            # color !=0 implies that we have visited current node
+            if colors[i] == 0 and len(graph[i]) > 0:
+                # if len(graph[i])==0 -> it's possible in undirect unconnected graph
                 temp = graph[i][0]
             else:
                 continue
-                temp = None
-
             queue = deque()
-            if temp is not None:
-                queue.append(temp)
-            else:
-                continue
-            color = 1
 
-            current_layer = 1
+            queue.append(temp)
 
-            while len(queue) > 0:
+            colors[temp] = 1
 
-                if current_layer == 0:
-                    current_layer = len(queue)
-                    color = 2 if (color == 1) else 1
+            while len(queue):
 
-                current = queue.popleft()
-                # print(current)
-                colors[current] = color
+                current_node = queue.popleft()
 
-                # for i in g[current]:
-                for i in graph[current]:
+                # filp current color
+                color = 2 if colors[current_node] == 1 else 1
 
-                    if colors[i] == 0:
-                        queue.append(i)
+                for current_child in graph[current_node]:
 
-                    elif colors[i] == color:
-
-                        return False
-
-                current_layer -= 1
+                    if colors[current_child] == 0:
+                        colors[current_child] = color
+                        queue.append(current_child)
+                    else:
+                        if colors[current_child] != color:
+                            return False
         return True
 
 

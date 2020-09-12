@@ -67,8 +67,6 @@ class Solution:
                 return -1.0
 
             else:
-                # print(temp)
-
                 invert = False
                 if[temp[0], temp[1]] in equations:
                     index = equations.index([temp[0], temp[1]])
