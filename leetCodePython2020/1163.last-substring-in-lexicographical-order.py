@@ -7,27 +7,21 @@
 # @lc code=start
 
 
-class Node:
-    def __init__(self, start, end, value=float('-inf')):
-        self.start = start
-        self.end = end
-        self.value = value
-
-
 class Solution:
 
     def lastSubstring(self, s: str) -> str:
 
-        root = Node(0,len(s))
+        start_char = max(s)
+        ans = start_char
 
+        # for i in range(len(s)):
+        #     if s[i] > start_char:
+        #         start_char = s[i]
 
-        def build_tree(node):
+        for i in range(len(s)):
+            if s[i] == start_char:
+                ans = max(ans, s[i:])
 
-            if node.start!=node.end:
-
-            else:
-                node.value = 
-
-
+        return ans
 
         # @lc code=end
