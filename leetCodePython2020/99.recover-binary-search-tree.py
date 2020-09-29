@@ -38,7 +38,7 @@ class Solution:
         in_order(root)
         self.first.val, self.second.val = self.second.val, self.first.val
 
-    def recoverTree_nlogn(self, root: TreeNode) -> None:
+    def recoverTree_in_place(self, root: TreeNode) -> None:
         """
         Do not return anything, modify root in-place instead.
         """

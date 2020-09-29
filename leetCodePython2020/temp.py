@@ -1,34 +1,49 @@
 
-from collections import Counter
-temp = "aaaabbbbcccc"
 
 
-counter = Counter(temp)
 
-print(counter)
-keys = sorted(counter.keys())
-print(sorted(counter.keys()))
+temp=[1,2,3,4,5]
+l_pt,r_pt = 0,len(temp)-1
+m=0
+target = 2
 
-l, r = 0, len(keys)-1
 
-# counter['a'] = 0
-# counter['b'] = 0
-# counter['c'] = 0
+while l_pt < r_pt:
 
-print(counter.most_common(1)[0][1])
-result = ''
-while counter.most_common(1)[0][1]:
+            m = l_pt+(r_pt-l_pt)//2
 
-    for i in range(len(keys)):
+            current = temp[m]
 
-        if counter[keys[i]] != 0:
-            result += keys[i]
-            counter[keys[i]] -= 1
+            if current==target:
+                
+                break
+            elif current>target:
+                r_pt=m-1
+            else:
+                l_pt=m+1
 
-    for i in range(len(keys)-1, -1, -1):
+temp = [1, 2, 3, 4, 5]
+l_pt, r_pt = 0, len(temp) - 1
+m = 0
+target = 4
 
-        if counter[keys[i]] != 0:
-            result += keys[i]
-            counter[keys[i]] -= 1
+while l_pt < r_pt:
 
-print(result == "abccbaabccba")
+    m = l_pt + (r_pt - l_pt) // 2
+
+    current = temp[m]
+
+    if current == target:
+        l_pt=m
+
+        break
+    elif current > target:
+        r_pt = m - 1
+    else:
+        l_pt = m + 1
+
+print(l_pt)
+
+
+print(m)
+
