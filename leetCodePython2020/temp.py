@@ -2,48 +2,24 @@
 
 
 
-temp=[1,2,3,4,5]
-l_pt,r_pt = 0,len(temp)-1
-m=0
-target = 2
+
+from collections import defaultdict
 
 
-while l_pt < r_pt:
+d = defaultdict(int)
+paragraph = "Bob hit a ball the hit BALL flew far after it was hit."
+for p in "!?',,,;.":
 
-            m = l_pt+(r_pt-l_pt)//2
-
-            current = temp[m]
-
-            if current==target:
-                
-                break
-            elif current>target:
-                r_pt=m-1
-            else:
-                l_pt=m+1
-
-temp = [1, 2, 3, 4, 5]
-l_pt, r_pt = 0, len(temp) - 1
-m = 0
-target = 4
-
-while l_pt < r_pt:
-
-    m = l_pt + (r_pt - l_pt) // 2
-
-    current = temp[m]
-
-    if current == target:
-        l_pt=m
-
-        break
-    elif current > target:
-        r_pt = m - 1
-    else:
-        l_pt = m + 1
-
-print(l_pt)
+    paragraph = paragraph.replace(p, '')
+    
+print(paragraph)
+paragraph = paragraph.lower().split()
 
 
-print(m)
+print(paragraph)
+print(paragraph[3],paragraph[6],paragraph[3]==paragraph[6])
 
+d['a']+=1
+d['ab'[0]]+=1
+
+print(d)
