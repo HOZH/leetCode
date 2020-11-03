@@ -45,15 +45,15 @@ class Solution:
         if length == 1:
             return 0 if target <= nums[0] else 1
 
-        l, r = 0, length
-        while l < r:
+        l, r = 0, length-1
+        while l <= r:
             pivot = l + (r - l) // 2
 
             if target == nums[pivot]:
                 return pivot
 
-            if  nums[pivot] > target:
-                r = pivot 
+            if nums[pivot] > target:
+                r = pivot - 1
 
             # elif target >= nums[pivot]:
             else:

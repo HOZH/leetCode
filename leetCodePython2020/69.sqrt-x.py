@@ -21,7 +21,7 @@ class Solution:
                 # if temp == x or (temp < x and (pivot+1)**2 > x):
                 return pivot
 
-            elif x < temp:
+            elif temp > x:
                 r = pivot-1
 
             else:
