@@ -18,18 +18,18 @@ class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
 
         result = deque()
-        stack = []
+        stack = deque()
         if root:
-            stack.append(root)
+            stack.appendleft(root)
 
         while len(stack):
-            current = stack.pop()
+            current = stack.popleft()
             result.appendleft(current.val)
 
             if current.left:
-                stack.append(current.left)
+                stack.appendleft(current.left)
             if current.right:
-                stack.append(current.right)
+                stack.appendleft(current.right)
 
         return result
 

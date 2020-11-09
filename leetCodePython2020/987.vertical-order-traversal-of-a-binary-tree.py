@@ -57,6 +57,7 @@ class Solution:
         preorder(0, 0, root)
 
         ans = []
+
         last_x = float('-inf')
         for x, y, val in sorted(vals):
             if x != last_x:

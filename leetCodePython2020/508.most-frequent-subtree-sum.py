@@ -37,6 +37,7 @@ class Solution:
         assign_val_helper(root)
 
         temp = Counter()
+
         def traversal_helper(node, records):
 
             if node is None:

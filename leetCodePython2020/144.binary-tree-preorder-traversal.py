@@ -12,7 +12,7 @@
 #         self.left = left
 #         self.right = right
 
-
+from collections import deque
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
 
@@ -28,19 +28,19 @@ class Solution:
 
         # pre_order(root)
 
-        stack = []
+        stack = deque()
         if root:
-            stack.append(root)
+            stack.appendleft(root)
 
         # FILO stack
         while len(stack):
-            current = stack.pop()
+            current = stack.popleft()
             self.result.append(current.val)
 
             if current.right:
-                stack.append(current.right)
+                stack.appendleft(current.right)
             if current.left:
-                stack.append(current.left)
+                stack.appendleft(current.left)
 
         return self.result
 

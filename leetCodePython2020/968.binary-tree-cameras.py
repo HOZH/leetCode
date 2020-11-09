@@ -35,7 +35,7 @@ class Solution:
 
             # set up a camera at current node
             # when any of its children needs support from it
-            if (left and left[0] == False)or (right and right[0] == False):
+            if (left and left[0] == False) or (right and right[0] == False):
                 c[0] += 1
                 return True, True
 

@@ -16,31 +16,28 @@ class Solution:
         wordList = set(wordList)
         self.pos_cache = dict()
 
-        def matched(a, b):
-            count = 0
-            for i in range(len(a)):
-                if a[i] == b[i]:
-                    continue
-                else:
-                    count += 1
-
         if endWord not in wordList:
             return 0
 
         queue = deque([beginWord])
 
         step = 0
+        local_set = set()
+
+        # bfs
         while len(queue) > 0:
-            local_set = set()
             step += 1
 
-            for _ in range(len(queue)):
+            current_layer_len = len(queue)
+
+            for _ in range(current_layer_len):
                 current = queue.popleft()
                 if current == endWord:
                     return step + 1
 
                 for i in range(len(current)):
                     for j in range(97, 123):
+                        # find next potential word in wordlist
                         ch = chr(j)
                         if ch != current[i]:
                             temp = current[:i] + ch + current[i + 1:]

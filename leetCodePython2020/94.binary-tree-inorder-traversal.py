@@ -12,6 +12,8 @@
 #         self.left = left
 #         self.right = right
 
+from collections import deque
+
 
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
@@ -31,17 +33,17 @@ class Solution:
         # return self.arr
 
         result = []
-        stack = []
+        stack = deque()
 
         current = root
 
         while len(stack) or current:
 
             while current:
-                stack.append(current)
+                stack.appendleft(current)
                 current = current.left
 
-            current = stack.pop()
+            current = stack.popleft()
             result.append(current.val)
             current = current.right
 

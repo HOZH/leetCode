@@ -18,6 +18,8 @@ class Solution:
         #
         dp = [[241 for _ in range(length)] for _ in range(1 << length)]
         parent = [[-1 for _ in range(length)] for _ in range(1 << length)]
+
+        # init dp values with first visited node
         for i in range(length):
             dp[1 << i][i] = len(A[i])
 
@@ -47,8 +49,11 @@ class Solution:
                         #     break
 
                     temp[i][j] = temp_len - count
+        # s -> binary representation of indexs of eles that already visited
 
+        # all possible binary representations
         for s in range(1, (1 << length)):
+            # all possible b.r. end contains j's number
             for j in range(length):
 
                 if not (s & (1 << j)):
@@ -57,6 +62,8 @@ class Solution:
 
                 # s except j's are all filled up
                 ps = s & ~(1 << j)
+
+                # all possible combination of b.r. that start with ps and end with j
                 for i in range(length):
                     # s except j's are all filled up + end by j for all possible ending string form previous steps
                     if dp[ps][i] + temp[i][j] < dp[s][j]:
