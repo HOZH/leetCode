@@ -11,9 +11,19 @@ class NumArray:
 
         self.ns = nums
 
+        self.dp = [0]*len(self.ns)
+        if len(nums):
+            self.dp[0] = self.ns[0]
+
+            for k in range(1, len(self.ns)):
+                self.dp[k] = self.dp[k-1]+self.ns[k]
+
     def sumRange(self, i: int, j: int) -> int:
 
-        return sum(self.ns[i:j+1])
+        if i == 0:
+            return self.dp[j]
+        else:
+            return self.dp[j]-self.dp[i-1]
 
 
 # Your NumArray object will be instantiated and called as such:

@@ -9,53 +9,62 @@ class Solution:
 
     def maxSubArray(self, nums) -> int:
 
-        max_len = len(nums)
-
-        if max_len == 0:
+        if not len(nums):
             return 0
+        dp = [0]*len(nums)
+        dp[0]=nums[0]
+        for i in range(1,len(nums)):
+            dp[i]=nums[i]+max(0,dp[i-1])
 
-        if max_len == 1:
-            return nums[0]
+        return max(dp)
 
-        if all(x < 0 for x in nums):
-            return max(nums)
+        # max_len = len(nums)
 
-        head, tail = 0, max_len - 1
+        # if max_len == 0:
+        #     return 0
 
-        outter_left, outter_right, answer, left, right = 0, 0, 0, 0, tail
+        # if max_len == 1:
+        #     return nums[0]
 
-        while True:
+        # if all(x < 0 for x in nums):
+        #     return max(nums)
 
-            if outter_left + nums[left] >= 0:
-                outter_left += nums[left]
+        # head, tail = 0, max_len - 1
 
-            else:
+        # outter_left, outter_right, answer, left, right = 0, 0, 0, 0, tail
 
-                outter_left = 0
+        # while True:
 
-                head = left + 1 if left + 1 < max_len else head
+        #     if outter_left + nums[left] >= 0:
+        #         outter_left += nums[left]
 
-            left += 1
+        #     else:
 
-            if outter_right + nums[right] >= 0:
-                outter_right += nums[right]
+        #         outter_left = 0
 
-            else:
+        #         head = left + 1 if left + 1 < max_len else head
 
-                outter_right = 0
-                tail = right - 1 if right > 0 else tail
+        #     left += 1
 
-            right -= 1
+        #     if outter_right + nums[right] >= 0:
+        #         outter_right += nums[right]
 
-            a = outter_left if outter_left > outter_right else outter_right
-            answer = a if a > answer else answer
+        #     else:
 
-            if left > right:
-                if outter_left + nums[left] < 0 and head != tail:
+        #         outter_right = 0
+        #         tail = right - 1 if right > 0 else tail
 
-                    head = left + 1 if left + 1 <= max_len else head
+        #     right -= 1
 
-                break
+        #     a = outter_left if outter_left > outter_right else outter_right
+        #     answer = a if a > answer else answer
 
-        b = sum(nums[head:tail + 1])
-        return b if answer < b else answer
+        #     if left > right:
+        #         if outter_left + nums[left] < 0 and head != tail:
+
+        #             head = left + 1 if left + 1 <= max_len else head
+
+        #         break
+
+        # b = sum(nums[head:tail + 1])
+        # return b if answer < b else answer

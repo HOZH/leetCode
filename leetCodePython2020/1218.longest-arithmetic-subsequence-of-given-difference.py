@@ -12,10 +12,11 @@ from collections import defaultdict
 class Solution:
     def longestSubsequence(self, arr: List[int], difference: int) -> int:
 
-        temp = defaultdict(int)
-        for i in range(len(arr)-1, -1, -1):
-            temp[arr[i]] = temp[arr[i]+difference]+1
-        return max(temp.values())
+        dp = [1]*len(arr)
+        dp = defaultdict(int)
+        for i in range(len(arr)):
+            dp[arr[i]] = dp[arr[i]-difference]+1
 
+        return max(dp.values())
 
-# @lc code=end
+ # @lc code=end
