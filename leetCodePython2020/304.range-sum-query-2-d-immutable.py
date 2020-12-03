@@ -27,9 +27,10 @@ class NumMatrix:
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
 
-        #1-indexeded
+        # 1-indexeded
         return self.sums[row2+1][col2+1]\
-        -self.sums[row2+1][col1]-self.sums[row1][col2+1]+self.sums[row1][col1]
+            - self.sums[row2+1][col1] - \
+            self.sums[row1][col2+1]+self.sums[row1][col1]
 
         # Your NumMatrix object will be instantiated and called as such:
         # obj = NumMatrix(matrix)
