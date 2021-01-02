@@ -20,8 +20,9 @@ class Solution:
                     continue
                 c(target_count, depth+1, i+1, current_list+[nums[i]])
 
+        # iterating through all possible length within the subset
         for i in range(len(nums)+1):
             c(i, 0, 0, [])
-        return self.ans
 
+        return self.ans
 # @lc code=end

@@ -15,7 +15,8 @@ class Solution:
             return [-1, -1]
 
         l, r = 0, length - 1
-        l_result, r_result, index = 0, length - 1, -1
+        l_result, r_result = 0, length - 1
+        index = -1
         while l <= r:
             m = l + (r - l) // 2
             current = nums[m]

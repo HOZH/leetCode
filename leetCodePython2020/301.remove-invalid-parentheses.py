@@ -25,34 +25,34 @@ class Solution:
                     return False
             return True if left == right else False
 
-        def c(nums, target_count, depth, start_index, current_list, ans):
-            if target_count == depth:
-                ans.append(set(current_list))
-                return
-            for i in range(start_index, len(nums)):
-                if i in self.not_letters:
-                    continue
-                c(nums, target_count, depth + 1, i +
-                  1, current_list + [i], ans)
+        # def c(nums, target_count, depth, start_index, current_list, ans):
+        #     if target_count == depth:
+        #         ans.append(set(current_list))
+        #         return
+        #     for i in range(start_index, len(nums)):
+        #         if i in self.not_letters:
+        #             continue
+        #         c(nums, target_count, depth + 1, i +
+        #           1, current_list + [i], ans)
 
-        def helper(current_string, remove_count):
-            if is_valid(current_string):
-                self.ans.append(current_string)
-                return True
-            deleting_indexes_set = []
-            c([k for k in range(len(current_string))],
-              remove_count, 0, 0, [], deleting_indexes_set)
+        # def helper(current_string, remove_count):
+        #     if is_valid(current_string):
+        #         self.ans.append(current_string)
+        #         return True
+        #     deleting_indexes_set = []
+        #     c([k for k in range(len(current_string))],
+        #       remove_count, 0, 0, [], deleting_indexes_set)
 
-            result = False
-            for current_indexes in deleting_indexes_set:
-                temp_string = ''
-                for i in range(len(current_string)):
-                    if i not in current_indexes:
-                        temp_string += current_string[i]
-                if is_valid(temp_string):
-                    self.ans.append(temp_string)
-                    result = True
-            return result
+        #     result = False
+        #     for current_indexes in deleting_indexes_set:
+        #         temp_string = ''
+        #         for i in range(len(current_string)):
+        #             if i not in current_indexes:
+        #                 temp_string += current_string[i]
+        #         if is_valid(temp_string):
+        #             self.ans.append(temp_string)
+        #             result = True
+        #     return result
 
         temp_s = ''
         adding_l = False

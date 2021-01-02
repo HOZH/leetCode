@@ -8,7 +8,8 @@
 class Solution:
     def minSwap(self, A: List[int], B: List[int]) -> int:
 
-        keep, swap = [9999 for _ in range(len(A))], [9999 for _ in range(len(A))]
+        keep, swap = [9999 for _ in range(len(A))], [
+            9999 for _ in range(len(A))]
 
         keep[0] = 0
         swap[0] = 1

@@ -34,7 +34,8 @@ class Solution:
 
             if helper(m):
                 r = m-1
-                result = min(m, result)
+                # result = min(m, result)
+                result = m
 
             else:
                 l = m+1

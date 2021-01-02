@@ -17,28 +17,6 @@ class Solution:
 
         starts, ones = [], []
 
-        def bfs(arr):
-
-            while len(arr) > 0:
-                ny, nx = arr.popleft()
-                positions = [(ny - 1, nx), (ny + 1, nx),
-                             (ny, nx - 1), (ny, nx + 1)]
-                for k in positions:
-                    y, x = k
-                    if y < len(matrix) and y >= 0 and x < len(matrix[0]) and x >= 0:
-
-                        if result[y][x] == -1:
-                            result[y][x] = result[ny][nx] + 1
-
-                            arr.append((y, x))
-
-                        elif result[y][x] < 3:
-                            pass
-                        else:
-                            temp = result[ny][nx] + 1
-                            if temp < result[y][x]:
-                                result[y][x] = temp
-                                arr.append((y, x))
         # get zeros
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
@@ -55,10 +33,33 @@ class Solution:
 
                     for c in positions:
                         y, x = c
-                        if y < len(matrix) and y >= 0 and x < len(matrix[0]) and x >= 0:
+                        if 0 <= y < len(matrix) and 0 <= x < len(matrix[0]):
                             if result[y][x] != 0:
                                 result[y][x] = 1
                                 ones.append([y, x])
+
+        def bfs(arr):
+
+            while len(arr) > 0:
+                ny, nx = arr.popleft()
+                positions = [(ny - 1, nx), (ny + 1, nx),
+                             (ny, nx - 1), (ny, nx + 1)]
+                for k in positions:
+                    y, x = k
+                    if 0 <= y < len(matrix) and 0 <= x < len(matrix[0]):
+
+                        if result[y][x] == -1:
+                            result[y][x] = result[ny][nx] + 1
+
+                            arr.append((y, x))
+
+                        elif result[y][x] < 3:
+                            pass
+                        else:
+                            temp = result[ny][nx] + 1
+                            if temp < result[y][x]:
+                                result[y][x] = temp
+                                arr.append((y, x))
 
         for k in ones:
             i, j = k
