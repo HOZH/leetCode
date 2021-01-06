@@ -10,7 +10,7 @@ class Solution:
 
         row_len, col_len = len(dungeon), len(dungeon[0])
 
-        hp = [[float('inf')]*(col_len+1) for _ in range(row_len+1)]
+        hp = [[float('inf')] * (col_len+1) for _ in range(row_len+1)]
 
         hp[row_len][col_len-1] = hp[row_len-1][col_len] = 1
 

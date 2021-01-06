@@ -6,26 +6,33 @@
 
 # @lc code=start
 
+from functools import lru_cache
+
 
 class Solution:
+
+    # def tribonacci(self, n: int) -> int:
+
+    #     dp = [0]*(max(n, 3)+1)
+    #     dp[1], dp[2], dp[3] = 1, 1, 2
+
+    #     for i in range(4, n+1):
+    #         dp[i] = dp[i-1]+dp[i-2]+dp[i-3]
+
+    #     return dp[n]
+
+    @lru_cache(None)
     def tribonacci(self, n: int) -> int:
-        # lst = [0, 1, 1]
-        # if n < 2:
-        #     return lst[n]
-        # else:            
-        #     for i in range(n-2):
-        #         lst.append(sum(lst))
-        #         lst.pop(0)
-        # return lst.pop()
 
-        dp = [0]*(max(n, 3)+1)
-        dp[1] = 1
-        dp[2] = 1
-        dp[3] = 2
-        for i in range(4, n+1):
-            dp[i]=dp[i-1]+dp[i-2]+dp[i-3]
-            # dp[i] = dp[i-1]*2-dp[i-4]
+        if n < 4:
+            if not n:
+                return 0
+            elif n < 3:
+                return 1
+            else:
+                return 2
 
-        return dp[n]
+        return self.tribonacci(n-1)+self.tribonacci(n-2)+self.tribonacci(n-3)
+
 
 # @lc code=end
