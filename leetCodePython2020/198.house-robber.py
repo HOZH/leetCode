@@ -8,21 +8,22 @@
 
 
 class Solution:
+
     def rob(self, nums: List[int]) -> int:
-        if len(nums) == 0:
+
+        length = len(nums)
+        if not length:
             return 0
+        # dp[i]->max profit can get til i's
+        dp = [0] * length
+        dp[0] = nums[0]
 
-        ans = [0 for i in range(len(nums))]
-
-        ans[0] = nums[0]
-
-        for i in range(1, len(nums)):
-            temp = i-2
-            if temp < 0:
-                ans[i] = max(0+nums[i], ans[i-1])
+        for i in range(1, length):
+            if i-2 < 0:
+                dp[i] = max(nums[i], dp[i-1])
             else:
-                ans[i] = max(ans[temp]+nums[i], ans[i-1])
+                dp[i] = max(dp[i-2]+nums[i], dp[i-1])
+        return dp[-1]
 
-        return ans[-1]
 
 # @lc code=end

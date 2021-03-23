@@ -33,6 +33,7 @@ class Solution:
                 if tails[m] < x:
                     i = m+1
                 elif tails[m] >= x:
+
                     j = m
             tails[i] = x
             size = max(i+1, size)

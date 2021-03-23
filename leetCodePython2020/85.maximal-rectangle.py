@@ -10,31 +10,40 @@
 class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
 
-        row_c = len(matrix)
-        if row_c == 0:
+        row_len = len(matrix)
+        if not row_len:
             return 0
-        col_c = len(matrix[0])
+        col_len = len(matrix[0])
 
-        dp = [[0 for _ in range(col_c)] for _ in range(row_c)]
+        # dp[i][j] -> max seq length of consecutive 1s end in index i,j
+        dp = [list(map(lambda x:int(x), matrix[i])) for i in range(row_len)]
 
-        for i in range(row_c):
-            for j in range(col_c):
-                if matrix[i][j] == '0':
-                    dp[i][j] = 0
-                else:
-                    dp[i][j] = (0 if j == 0 else dp[i][j-1])+1
+        for i in range(row_len):
+            for j in range(col_len):
+                if matrix[i][j] != '0':
+                    if j != 0:
+                        dp[i][j] = dp[i][j-1]+1
+        # for i in dp:
+        #     print(i)
+        # optional
+        ori_dp = [dp[i][:] for i in range(row_len)]
         ans = 0
 
-        for i in range(row_c):
-            for j in range(col_c):
-                length = float('inf')
+        for i in range(row_len):
+            for j in range(col_len):
+                if dp[i][j] != 0:
+                    # optional
+                    if i > 0 and ori_dp[i-1][j] >= dp[i][j]:
+                        continue
 
-                for k in range(i, row_c):
-                    length = min(length, dp[k][j])
+                    min_width = float('inf')
 
-                    if length == 0:
-                        break
-                    ans = max(ans, length*(k-i+1))
+                    for k in range(i, row_len):
+                        if dp[k][j] == 0:
+                            break
+                        else:
+                            min_width = min(min_width, dp[k][j])
+                            ans = max(ans, min_width*(k-i+1))
 
         return ans
 
