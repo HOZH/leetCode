@@ -34,7 +34,7 @@ class Solution:
 
         dp = [[0 for _ in range(7)] for i in range(n+1)]
         kMod = 1e9 + 7
-        
+
         for i in range(1, 7):
             dp[1][i] = 1
 

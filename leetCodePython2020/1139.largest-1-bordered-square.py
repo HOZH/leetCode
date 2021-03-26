@@ -15,6 +15,8 @@ class Solution:
 
         row_len, col_len = len(grid), len(grid[0])
 
+        # dp[i][j] implies the maximun continuous side with ending point at col j at row i
+
         dp = [[0 for _ in range(col_len)] for _ in range(row_len)]
 
         for i in range(row_len):
@@ -33,6 +35,7 @@ class Solution:
                         # check if v side length is possible
                         if i + side - 1 < row_len:
                             if dp[i + side - 1][j] >= side:
+
                                 valid = True
                                 for k in range(i, i + side):
                                     if not (dp[k][j - side + 1] and dp[k][j]):
@@ -44,6 +47,8 @@ class Solution:
                                     break
 
         return ans**2
+
+# @lc code=end
 
     # def largest1BorderedSquare_temp(self, grid) -> int:
     #     if len(grid) == 0 or len(grid[0]) == 0:
@@ -102,5 +107,3 @@ class Solution:
     #     # print(table)
     #     pass
     #     return result_side ** 2
-
-# @lc code=end

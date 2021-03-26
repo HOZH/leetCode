@@ -29,7 +29,7 @@ class Solution:
         for i in range(1, len(A)):
             for j in range(2, min(K + 1, i + 1 + 1)):
                 # k+1 last_stop_index+1 -> if stop at index 2 we can divide up to 2+1 = 3 groups,  j-1 prev_groups
-                for k in range(max(i - 1, j - 1 - 1), -1, -1):
+                for k in range(i - 1, -1, -1):
                     # k exclude, i included
                     temp_last_group = means[k + 1][i]
                     temp_sum_prev = dp[k][j - 1]

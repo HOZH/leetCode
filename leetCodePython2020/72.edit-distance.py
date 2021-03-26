@@ -16,6 +16,8 @@ class Solution:
         if len2 == 0:
             return len1
 
+        # dp[i][j] implies the minimun cost for converting first i chars of word1 to first j chars of word2
+
         # pad by 1 index for both h,v
         # dp min cost of case where i-th of word1 matches j-th of word2
         # by assign their value recursively, we can ensure digits prior to i-th and j-th
