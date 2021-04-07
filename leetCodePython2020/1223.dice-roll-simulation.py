@@ -23,7 +23,10 @@ class Solution:
                     if l != j:
                         dp[i][j][1] += sum(dp[i - 1][l]) % kMod
                     else:
+                        # rollMax[j-1] -> 1-indexed, the rollMax count of value j
+                        # [j-1]+1 -> 1-indexed
                         for k in range(1, rollMax[j - 1] + 1):
+                            # k-1, 1-indexed, previous count on the same consecutive value
                             dp[i][j][k] += dp[i - 1][j][k - 1] % kMod
 
         temp = sum([(sum(i) % kMod) for i in dp[-1]])
@@ -32,9 +35,10 @@ class Solution:
 
     def dieSimulator_temp(self, n: int, rollMax: List[int]) -> int:
 
+        # dp[i][j]-> length of the sequence, last dice 
         dp = [[0 for _ in range(7)] for i in range(n+1)]
         kMod = 1e9 + 7
-
+  
         for i in range(1, 7):
             dp[1][i] = 1
 
@@ -51,7 +55,7 @@ class Solution:
 
                 # take off invalid posibilities
                 invalid = max(0, k) if k <= 1 else (sum(dp[k-1])-dp[k-1][j])
-                dp[i][j] = ((dp[i][j]-invalid) % kMod+kMod) % kMod
+                dp[i][j] = ((dp[i][j]-invalid)% kMod+kMod) % kMod
 
         return int(sum(dp[-1]) % (kMod))
 

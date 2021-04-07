@@ -12,7 +12,7 @@ class Solution:
 
         length = len(A)
 
-        # same chars at the ending of a and the beginging of b
+        # len of two words contatnation that has the same chars at the ending of a and the beginging of b
         temp = [[0 for _ in range(length)] for _ in range(length)]
 
         #

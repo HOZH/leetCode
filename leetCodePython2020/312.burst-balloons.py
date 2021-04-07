@@ -5,10 +5,39 @@
 #
 
 # @lc code=start
-
+from functools import lru_cache
 
 class Solution:
+
     def maxCoins(self, nums: List[int]) -> int:
+
+        length = len(nums)
+
+        vals = [1]+nums+[1]
+
+        @lru_cache(None)
+        def dp(i, j):
+
+            if i > j:
+                return 0
+
+            elif i == j:
+                return vals[i-1]*vals[i]*vals[i+1]
+
+            else:
+
+                temp = 0
+
+                for k in range(i, j+1):
+
+                    temp = max(temp, dp(i, k-1) +
+                               vals[i-1]*vals[k]*vals[j+1]+dp(k+1, j))
+
+                return temp
+
+        return dp(1, length)
+
+    def maxCoins1(self, nums: List[int]) -> int:
         length = len(nums)
 
         # initial vals with 1 boundaries on both side

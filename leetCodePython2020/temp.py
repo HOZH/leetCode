@@ -1,27 +1,48 @@
+from typing import List
 
 
-def session_simulator(clients, regular):
-    result = 0
-    for i in clients:
-        if regular >= i:
-            regular -= i
-            result += i
-        else:
-            result += regular
-            remaining_time = i-regular
-            result += remaining_time//2
-            regular = 0
-    return result
+class Solution:
+    def criticalConnections(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+        graph = [[] for i in range(n+1)]
+        ids, low = dict(), dict()
+
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+            ids[u] = -1
+            ids[v] = -1
+            low[u] = 0
+            low[v] = 0
+
+        # ids, low = [-1] * (n+1), [0] * (n+1)
+        # ids,low=dict(),dict()
+
+        id_max, bridges = 0, []
+
+        def dfs(u, parent, bridges):
+            nonlocal id_max
+            id_max += 1
+            ids[u] = low[u] = id_max
+
+            for v in graph[u]:
+                if v == parent:
+                    continue
+                if ids[v] == -1:
+                    dfs(v, u, bridges)
+                    low[u] = min(low[u], low[v])
+                    if ids[u] < low[v]:
+                        bridges.append(sorted([u, v]))
+                else:
+                    low[u] = min(low[u], ids[v])
+        dfs(u, -1, bridges)
+        return sorted(bridges)
 
 
-# Test cases
-print(session_simulator([1, 2, 3, 1], 10))
-print(session_simulator([4, 3, 4, 6, 2], 25))
-print(session_simulator([7, 2, 1, 5, 3, 2], 30))
-print(session_simulator([5, 5], 10))
-print(session_simulator([1, 5, 4, 8, 7], 28))
-print(session_simulator([5, 7, 5, 6], 20))
-print(session_simulator([8, 6, 7, 5, 3, 9], 20))
-print(session_simulator([8, 6, 7, 5, 3, 9], 30))
-print(session_simulator([8, 6, 7, 5, 3, 9], 50))
-print(session_simulator([20, 12, 6, 8, 14, 15, 9, 2], 75))
+t = Solution()
+print(t.criticalConnections(4, [[0, 1], [1, 2], [2, 0], [1, 3]]))
+print(t.criticalConnections(
+    6, [[1, 2], [1, 3], [2, 3], [2, 4], [2, 5], [4, 6], [5, 6]]))
+print(t.criticalConnections(
+    9, [[1, 2], [1, 3], [2, 3], [3, 4], [3, 6],
+        [4, 5], [6, 7], [6, 9], [7, 8], [8, 9]]
+))

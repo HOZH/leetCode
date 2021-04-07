@@ -24,7 +24,7 @@ class Solution:
         while len(queue) > 0:
             local_set = set()
             step += 1
-            for k in range(len(queue)):
+            for _ in range(len(queue)):
                 current = queue.popleft()
                 if current == end:
                     return step

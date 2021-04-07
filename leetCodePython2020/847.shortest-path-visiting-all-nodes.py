@@ -15,6 +15,8 @@ class Solution:
         shift = [1 << i for i in range(n)]
         ans = (1 << n)-1
         queue = deque()
+
+        # [i][j], i->current node, j->current state. visited's used to check if a state with i as last step has been encoutered b4
         visited = [[0 for _ in range(1 << n)] for _ in range(n)]
 
         for i in range(n):
@@ -40,7 +42,7 @@ class Solution:
                 # will only be operated after current logic layer (bfs)
                 for j in graph[node]:
                     queue.append([j, state | shift[j]])
-            step+=1
+            step += 1
 
         return -1
 # @lc code=end

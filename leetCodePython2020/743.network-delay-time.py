@@ -31,7 +31,7 @@ class Solution:
                 if delay[current] + c < delay[i]:
                     delay[i] = delay[current] + c
 
-            l = sorted(dag[current], key=lambda x: x[1])
+            # l = sorted(dag[current], key=lambda x: x[1])
 
             visited.add(current)
 
