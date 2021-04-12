@@ -1,17 +1,9 @@
 
 
-def foo():
-    num=0
-    while num < 10:
-        yield num
-        num += 1
 
-def bar():
-
-    num = 0
-    yield from range(0,10)
+from collections import Counter
 
 
-print(list(foo()))
+c = Counter([1,1,2,2,3])
 
-print(list(bar()))
+print(c.most_common())
