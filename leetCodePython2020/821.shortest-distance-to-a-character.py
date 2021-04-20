@@ -14,7 +14,6 @@ class Solution:
 
         e = -1
         for i in range(length):
-            a = s[i]
             if s[i] == c:
                 res[i] = 0
                 e = i
@@ -26,7 +25,6 @@ class Solution:
 
         e = -1
         for i in range(length - 1, -1, -1):
-            a = s[i]
 
             if s[i] == c:
                 e = i

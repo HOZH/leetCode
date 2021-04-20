@@ -1,9 +1,9 @@
 
 
+strs = ["bella", "label", "roller"]
 
-from collections import Counter
+sets = list(map(lambda x: set([*x]), strs))
 
+print(sets)
 
-c = Counter([1,1,2,2,3])
-
-print(c.most_common())
+print(sets[0]&sets[1]&sets[2])
