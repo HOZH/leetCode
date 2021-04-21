@@ -1,9 +1,17 @@
 
 
-strs = ["bella", "label", "roller"]
 
-sets = list(map(lambda x: set([*x]), strs))
 
-print(sets)
 
-print(sets[0]&sets[1]&sets[2])
+
+
+
+
+from collections import Counter
+
+
+
+a=Counter([1,2])
+b=Counter([1,2])
+
+print(a==b)
