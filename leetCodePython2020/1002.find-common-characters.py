@@ -17,7 +17,6 @@ class Solution:
             temp_matched = sets[0]
 
             for i in range(1, len(sets)):
-                a = sets[i]
 
                 temp_matched = temp_matched & sets[i]
 
@@ -39,4 +38,3 @@ class Solution:
 
 
 # @lc code=end
-·
