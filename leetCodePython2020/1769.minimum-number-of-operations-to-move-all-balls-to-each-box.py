@@ -13,6 +13,26 @@ class Solution:
 
         length = len(boxes)
         result = [0]*length
+        left_count, left_cost, right_count, right_cost = 0, 0, 0, 0
+
+        for i in range(1, length):
+            if boxes[i-1] == '1':
+                left_count += 1
+            left_cost += left_count
+            result[i] = left_cost
+
+        for i in range(length-2, -1, -1):
+            if boxes[i+1] == '1':
+                right_count += 1
+            right_cost += right_count
+            result[i] += right_cost
+
+        return result
+
+    def minOperations_temp(self, boxes: str) -> List[int]:
+
+        length = len(boxes)
+        result = [0]*length
 
         for i in range(length):
 

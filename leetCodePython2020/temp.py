@@ -6,12 +6,6 @@
 
 
 
+a=[[[1],[2]],[[3]]]
 
-from collections import Counter
-
-
-
-a=Counter([1,2])
-b=Counter([1,2])
-
-print(a==b)
+print([k for i in a for j in i for k in j])
