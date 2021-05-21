@@ -9,7 +9,7 @@ class Solution:
     def pathInZigZagTree(self, label: int) -> List[int]:
 
         res = []
-        
+
         while label != 1:
             res.append(label)
             label = int('1' + "".join(map(lambda x: '1' if x ==
@@ -18,4 +18,3 @@ class Solution:
 
         return reversed(res)
 # @lc code=end
-

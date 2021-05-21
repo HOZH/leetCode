@@ -5,6 +5,7 @@
 
 
 
+from functools import reduce
 
-for i in range(0,7,2):
-    print(i)
+
+print(reduce(lambda a,b:a+b,(1,2)))
