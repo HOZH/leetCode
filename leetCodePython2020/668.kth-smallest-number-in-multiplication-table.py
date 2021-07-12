@@ -24,7 +24,7 @@ class Solution:
         #     for j in range(n):
         #         matrix[i][j] = (i+1)*(j+1)
         # l, r = matrix[0][0], matrix[-1][-1]
-        l, r = 1, m*n+1
+        l, r = 1, m*n
         while l < r:
             pivot = l + (r-l)//2
             if LEX(m, n, pivot, k) < k:

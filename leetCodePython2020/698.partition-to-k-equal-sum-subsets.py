@@ -12,6 +12,16 @@ from collections import Counter
 
 class Solution:
     def canPartitionKSubsets(self, nums, k):
+        total = sum(nums)
+        if total % k != 0:
+            return False
+
+        self.partial_sum = total//k
+        nums = sorted(nums)
+
+        if nums[-1] > self.partial_sum:
+            return False
+
         def recurse(index, subsets):
             if index < 0:
                 return True
@@ -20,29 +30,17 @@ class Solution:
             for i in range(len(subsets)):
                 if subsets[i] in tried:
                     continue
-
-                if subsets[i]+nums[index] <= self.partital_sum:
+                if subsets[i]+nums[index] <= self.partial_sum:
                     subsets[i] += nums[index]
 
                     if recurse(index-1, subsets):
                         return True
+
                     subsets[i] -= nums[index]
+
                 tried.add(subsets[i])
-            return False
 
-        total = sum(nums)
-        if total % k != 0:
-            return False
-
-        subsets = [0]*k
-        self.partital_sum = total//k
-
-        nums = sorted(nums)
-
-        if nums[-1] > self.partital_sum:
-            return False
-
-        return recurse(len(nums)-1, subsets)
+        return recurse(len(nums)-1, [0]*k)
 
     def canPartitionKSubsets_1(self, nums, k: int) -> bool:
 

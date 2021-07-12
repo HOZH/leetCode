@@ -12,9 +12,39 @@
 #         self.left = None
 #         self.right = None
 
+from collections import Counter
+
 
 class Solution:
+
     def findMode(self, root: TreeNode) -> List[int]:
+        self.arr = []
+
+        def inorder(node):
+            if node is None:
+                return
+
+            inorder(node.left)
+            self.arr.append(node.val)
+            inorder(node.right)
+
+        inorder(root)
+
+        if len(self.arr) <= 1:
+            return self.arr
+
+        c = Counter(self.arr)
+
+        max_count = c.most_common(1)[0][1]
+        result = []
+
+        for val, count in c.most_common():
+            if count == max_count:
+                result.append(val)
+
+        return result
+
+    def findMode_temp(self, root: TreeNode) -> List[int]:
         self.arr = []
 
         def inorder(node):

@@ -7,13 +7,19 @@
 # @lc code=start
 from functools import lru_cache
 
+
 class Solution:
 
     def maxCoins(self, nums: List[int]) -> int:
 
-        length = len(nums)
+        nums = [num for num in nums if num]
+        n = len(nums)
+        if n > 1 and len(set(nums)) == 1:
+            return (nums[0]**3)*(n-2) + nums[0]**2 + nums[0]
 
-        vals = [1]+nums+[1]
+        n = len(nums)
+
+        vals = tuple([1]+nums+[1])
 
         @lru_cache(None)
         def dp(i, j):
@@ -35,7 +41,7 @@ class Solution:
 
                 return temp
 
-        return dp(1, length)
+        return dp(1, n)
 
     def maxCoins1(self, nums: List[int]) -> int:
         length = len(nums)

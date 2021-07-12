@@ -6,67 +6,58 @@
 
 # @lc code=start
 
-class Solution:
-    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+class TrieNode():
+    def __init__(self):
+        self.children = collections.defaultdict(TrieNode)
+        self.isWord = False
 
-        row_len = len(board)
-        col_len = len(board[0])
-        self.used = [[False for _ in range(col_len)] for _ in range(row_len)]
-        self.board = board
-        found = [False] * len(words)
 
-        def helper(y, x, s):
+class Trie():
+    def __init__(self):
+        self.root = TrieNode()
 
-            if s == '':
-                return True
+    def insert(self, word):
+        node = self.root
+        for w in word:
+            node = node.children[w]
+        node.isWord = True
 
-            new_pos = [(y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x)]
+    def search(self, word):
+        node = self.root
+        for w in word:
+            node = node.children.get(w)
+            if not node:
+                return False
+        return node.isWord
 
-            for i in new_pos:
 
-                ny, nx = i
+class Solution(object):
+    def findWords(self, board, words):
+        res = []
+        trie = Trie()
+        node = trie.root
+        for w in words:
+            trie.insert(w)
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                self.dfs(board, node, i, j, "", res)
+        return res
 
-                # valid_ny = ny >= 0 and ny < len(board)
-                # valid_nx = nx >= 0 and nx < len(board[0])
-                if 0 <= nx < len(board[0]) and 0 <= ny < len(board) and not self.used[ny][nx]:
-
-                    if board[ny][nx] == s[0]:
-                        self.used[ny][nx] = True
-                        if helper(ny, nx, s[1:]):
-                            self.used[ny][nx] = False
-                            return True
-                        self.used[ny][nx] = False
-
-            return False
-
-        for word_index in range(len(words)):
-            # print(board)
-            # print(self.used)
-            current_word = words[word_index]
-            found_current = False
-            for i in range(row_len):
-                if found_current:
-                    break
-                for j in range(col_len):
-                    # i -> y, j -> x
-                    if board[i][j] == current_word[0]:
-                        self.used[i][j] = True
-
-                        if helper(i, j, current_word[1:]):
-                            found[word_index] = True
-                            found_current = True
-                            self.used[i][j] = False
-                            break
-
-                        self.used[i][j] = False
-
-            ans = []
-            # print(found)
-            for i in range(len(words)):
-                if found[i]:
-                    ans.append(words[i])
-
-        return ans
-
+    def dfs(self, board, node, i, j, path, res):
+        if node.isWord:
+            res.append(path)
+            node.isWord = False
+        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
+            return
+        tmp = board[i][j]
+        node = node.children.get(tmp)
+        if not node:
+            return
+        board[i][j] = "#"
+        self.dfs(board, node, i+1, j, path+tmp, res)
+        self.dfs(board, node, i-1, j, path+tmp, res)
+        self.dfs(board, node, i, j-1, path+tmp, res)
+        self.dfs(board, node, i, j+1, path+tmp, res)
+        board[i][j] = tmp
 
 # @lc code=end

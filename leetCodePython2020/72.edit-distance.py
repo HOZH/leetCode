@@ -39,10 +39,12 @@ class Solution:
                 # dp[i-1][j]+1 implies (i-1)th of word1 already matched jth of word2
                 # therefore it will perform a deletion of last digit of word1 at cost 1
                 # word1[i-1] and word2[j-1] since they're in 1-indexed table
+
                 dp[i][j] = min(dp[i-1][j-1]+(0 if word1[i-1] == word2[j-1] else 1),
                                dp[i-1][j]+1,
                                dp[i][j-1]+1)
-        # dp[-1][-1] where the min cost that all j matches all i
+
+                # dp[-1][-1] where the min cost that all j matches all i
         return dp[-1][-1]
 
     def minDistance_temp(self, word1: str, word2: str) -> int:

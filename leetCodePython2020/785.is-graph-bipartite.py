@@ -24,7 +24,7 @@ class Solution:
         for i in range(len(graph)):
             # color !=0 implies that we have visited current node
             if colors[i] == 0 and len(graph[i]) > 0:
-                # if len(graph[i])==0 -> it's possible in undirect unconnected graph
+                # if len(graph[i])==0 -> it's possible in undirected unconnected graph
                 temp = graph[i][0]
             else:
                 continue

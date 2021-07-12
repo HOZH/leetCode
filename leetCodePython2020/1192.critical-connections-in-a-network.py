@@ -9,6 +9,9 @@
 
 class Solution:
     def criticalConnections(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+
+        head = 3
+
         graph = [[] for i in range(n)]
         for u, v in edges:
             graph[u].append(v)
@@ -16,6 +19,8 @@ class Solution:
 
         ids, low = [-1] * n, [0] * n
         id_max, bridges = 0, []
+
+        cc = set()
 
         def dfs(u, parent, bridges):
             nonlocal id_max
@@ -30,9 +35,16 @@ class Solution:
                     low[u] = min(low[u], low[v])
                     if ids[u] < low[v]:
                         bridges.append([u, v])
+
+                    if low[v] >= ids[u] and u != head:
+                        cc.add(u)
+
                 else:
                     low[u] = min(low[u], ids[v])
-        dfs(u, -1, bridges)
+        dfs(head, -1, bridges)
+        if len(graph[head]) > 1:
+            cc.add(head)
+        print(cc)
         return bridges
 
 # @lc code=end

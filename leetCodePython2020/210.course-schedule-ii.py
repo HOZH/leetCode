@@ -27,8 +27,8 @@ class Solution:
                         return False
                 elif i in visiting:
                     return False
-
             visited.append(current)
+
             visiting.remove(current)
 
             return True

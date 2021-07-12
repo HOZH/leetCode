@@ -20,6 +20,14 @@ class Solution:
                 a = i-1
                 b = i
                 break
+            else:
+                a = i
+                b = -1
+
+        if b == -1:
+            return list(map(lambda x: x**2, A[::-1]))
+        elif a == -1:
+            return list(map(lambda x: x**2, A))
 
         while a >= 0 and b < length:
             p1, p2 = A[a]**2, A[b]**2

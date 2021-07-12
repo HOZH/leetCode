@@ -37,7 +37,7 @@ class Solution:
 
         pt1, pt2 = 0, len(numbers)-1
 
-        while pt1<pt2:
+        while pt1 < pt2:
             s = numbers[pt1]+numbers[pt2]
 
             if s > target:

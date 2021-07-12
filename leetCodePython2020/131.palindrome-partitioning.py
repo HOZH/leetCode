@@ -44,10 +44,9 @@ class Solution:
 
         return dp[-1]
 
-    def partition_rec(self, s: str):
+    def partition(self, s: str):
 
         d = dict()
-        palindrome = set()
 
         def helper(sub):
             result = []
@@ -56,13 +55,11 @@ class Solution:
             if len(sub) == 1:
                 d[sub] = [[sub]]
                 return [[sub]]
+
             temp = ''
             for i in range(len(sub)):
                 temp += sub[i]
-                if temp in palindrome or temp == temp[::-1]:
-
-                    palindrome.add(temp)
-
+                if temp == temp[::-1]:
                     local_sub = [temp]
                     if sub[i + 1:] in d:
                         sub_result = d[sub[i + 1:]]
@@ -75,11 +72,10 @@ class Solution:
 
             d[sub] = result
             return result
-
         return helper(s)
 
     @lru_cache(None)
-    def partition(self, s: str):
+    def partition_temp1(self, s: str):
 
         if len(s) == 0:
             return tuple()

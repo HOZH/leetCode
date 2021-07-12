@@ -10,7 +10,29 @@ from collections import OrderedDict, defaultdict
 
 
 class Solution:
+
     def findJudge(self, N: int, trust: List[List[int]]) -> int:
+
+        if len(trust) == 0:
+            return 1 if N == 1 else -1
+
+        in_d, out_d = N-1, 0
+
+        out_g = defaultdict(list)
+        in_g = defaultdict(list)
+
+        for i, j in trust:
+
+            in_g[j].append(i)
+
+            out_g[i].append(j)
+
+        temp = list(filter(lambda x: len(in_g[x]) == in_d and len(out_g[x]) == out_d, [
+                    i for i in range(1, N+1)]))
+
+        return -1 if len(temp) != 1 else temp[0]
+
+    def findJudge_temp(self, N: int, trust: List[List[int]]) -> int:
 
         if len(trust) == 0:
             return 1 if N == 1 else -1

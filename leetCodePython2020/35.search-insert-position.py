@@ -46,20 +46,17 @@ class Solution:
             return 0 if target <= nums[0] else 1
 
         l, r = 0, length-1
-        while l <= r:
-            pivot = l + (r - l) // 2
 
+        while l <= r:
+            pivot = l+(r-l)//2
             if target == nums[pivot]:
                 return pivot
 
-            if nums[pivot] > target:
-                r = pivot - 1
-
-            # elif target >= nums[pivot]:
+            elif nums[pivot] > target:
+                r = pivot-1
             else:
-                l = pivot + 1
+                l = pivot+1
 
-            # else:
-            #     return pivot
         return l
+
         # @lc code=end

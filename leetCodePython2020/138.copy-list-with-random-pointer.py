@@ -21,6 +21,7 @@ class Solution:
             return None
 
         current = head
+
         while current:
             old_next = current.next
             current.next = Node(current.val, old_next)
@@ -35,11 +36,9 @@ class Solution:
 
         head = head.next
         current = head
-        # print('-------------')
 
         while current:
-            # print(current.val, None if not current.next else current.next.val,
-            #                   None if not current.random else current.random.val)
+
             if current.next:
                 old_next = current.next
                 current.next = old_next.next

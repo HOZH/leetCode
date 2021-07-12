@@ -10,6 +10,21 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
 
+        self.ans = []
+
+        for i in range(2**len(nums)):
+            current = []
+
+            for j in range(len(nums)):
+
+                if i & 1 << j:
+                    current.append(nums[j])
+            self.ans.append(current)
+
+        return self.ans
+
+    def subsets_temp(self, nums: List[int]) -> List[List[int]]:
+
         # self.ans = []
         # nums.sort()
 
@@ -23,8 +38,8 @@ class Solution:
         #     c(i, 0, 0, [])
         # return self.ans
         self.ans = []
-        s = 1 << (len(nums)+1)
-        s -= 1
+        # s = 1 << (len(nums)+1)
+        # s -= 1
         for i in range(2**len(nums)):
             current = []
             for j in range(len(nums)):

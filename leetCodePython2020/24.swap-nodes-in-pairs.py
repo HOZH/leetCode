@@ -13,8 +13,43 @@
 
 
 class Solution:
-
     def swapPairs(self, head: ListNode) -> ListNode:
+
+        if not head or not head.next:
+            return head
+
+        first_nodes, sec_nodes = [], []
+
+        index = 0
+
+        current = head
+        while current:
+
+            if index % 2 == 0:
+                sec_nodes.append(current)
+            else:
+                first_nodes.append(current)
+
+            index += 1
+            current = current.next
+
+        result = first_nodes.pop(0)
+        current = result
+
+        while first_nodes or sec_nodes:
+            if sec_nodes:
+                current.next = sec_nodes.pop(0)
+                current = current.next
+
+            if first_nodes:
+                current.next = first_nodes.pop(0)
+                current = current.next
+
+        current.next = None
+
+        return result
+
+    def swapPairs_temp(self, head: ListNode) -> ListNode:
         self.swap = True
         self.prev = None
 

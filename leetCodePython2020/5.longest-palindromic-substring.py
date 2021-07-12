@@ -8,6 +8,37 @@
 
 
 class Solution:
+
+    def longestPalindrome(self, s: str) -> str:
+        self.ans = ''
+
+        def helper(l, r):
+
+            if 0 <= l and r < len(s) and s[l] == s[r]:
+                farther = helper(l-1, r+1)
+                return farther
+            else:
+                return l+1, r-1
+
+            # while 0 <= l and r < len(s) and s[l] == s[r]:
+            #     self.ans = max(self.ans, s[l:r+1], key=len)
+            #     l, r = l-1, r+1
+
+        for i in range(len(s)):
+
+            # odd
+            # odd = helper(i, i)
+            odd_l, odd_r = helper(i, i)
+            odd_result = s[odd_l:odd_r+1]
+
+            # even
+            # even = helper(i, i+1)
+            even_l, even_r = helper(i, i+1)
+            even_result = s[even_l:even_r+1] if even_l != even_r else ''
+
+            self.ans = max(self.ans, odd_result, even_result, key=len)
+        return self.ans
+
     def longestPalindrome_slow(self, s: str) -> str:
 
         s_len = len(s)
@@ -38,7 +69,7 @@ class Solution:
                 if helper(s[i:i+length]):
                     return s[i:i+length]
 
-    def longestPalindrome(self, s: str) -> str:
+    def longestPalindrome_temp(self, s: str) -> str:
 
         def helper(current, l, r):
             while l >= 0 and r < len(current) and current[l] == current[r]:

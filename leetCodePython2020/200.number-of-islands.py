@@ -14,9 +14,9 @@ class Solution:
 
         # pick a start
         # do dfs and take off all the 1s in that graph
-         # count + =1
-         # try another remaining start
-         # return count after no start point left
+        # count + =1
+        # try another remaining start
+        # return count after no start point left
         row_len = len(grid)
         if row_len == 0:
             return 0

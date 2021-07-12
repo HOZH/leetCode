@@ -48,6 +48,58 @@ class Solution:
     #         current = tail
 
     #     return head
+    def insertionSortList_temp(self, head: ListNode) -> ListNode:
+
+        if not head or not head.next:
+            return head
+
+        temp_head = ListNode(-5001)
+        temp_head.next = head
+
+        current = head
+        global_prev, global_next = temp_head, current.next
+
+        while current is not None:
+            temp_current, temp_prev = temp_head, None
+
+            while temp_current != current:
+                if temp_current is None:
+                    temp_prev.next = current
+                    current.next = None
+                    global_prev.next = global_next
+                    if global_next:
+
+                        current = global_next
+                        global_next = global_next.next
+                    else:
+                        current = None
+
+                    break
+
+                elif temp_current.val < current.val:
+                    temp_prev = temp_current
+                    temp_current = temp_current.next
+                else:
+                    temp_prev.next = current
+                    current.next = temp_current
+                    global_prev.next = global_next
+                    if global_next:
+
+                        current = global_next
+                        global_next = global_next.next
+                    else:
+                        current = None
+
+                    break
+            if temp_current == current:
+                global_prev = current
+                if global_next:
+                    current = global_next
+                    global_next = global_next.next
+                else:
+                    break
+
+        return temp_head.next
 
     def insertionSortList(self, head: ListNode) -> ListNode:
 

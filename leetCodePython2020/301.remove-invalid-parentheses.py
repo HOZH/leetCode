@@ -100,16 +100,18 @@ class Solution:
 
             for i in range(start_index, len(current_string)):
 
-                # only pick first ele if there's consecutive identical eles
+                # only pick first ele if there're consecutive identical eles
                 if i != start_index and current_string[i - 1] == current_string[i]:
                     continue
 
-                if current_string[i] == '(' or current_string[i] == ')':
+                current_char = current_string[i]
+                if current_char == '(':
                     temp_string = current_string[:i] + current_string[i + 1:]
-                    if r_count > 0:
-                        dfs(temp_string, i, l_count, r_count - 1)
-                    elif l_count > 0:
-                        dfs(temp_string, i, l_count - 1, r_count)
+
+                    dfs(temp_string, i, l_count - 1, r_count)
+                elif current_char == ')':
+                    temp_string = current_string[:i] + current_string[i + 1:]
+                    dfs(temp_string, i, l_count, r_count-1)
 
         l, r = 0, 0
 

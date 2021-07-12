@@ -16,8 +16,28 @@ from collections import deque
 
 
 class Solution:
-    # using bfs
     def levelOrder(self, root: 'Node') -> List[List[int]]:
+        result = []
+        queue = deque()
+        if root:
+            queue.append(root)
+
+        while len(queue):
+            level_len = len(queue)
+            current_level = []
+
+            while level_len:
+                current = queue.popleft()
+                level_len -= 1
+                queue.extend(current.children)
+
+                current_level.append(current.val)
+            result.append(current_level)
+
+        return result
+    # using bfs
+
+    def levelOrder_temp(self, root: 'Node') -> List[List[int]]:
         result = []
         queue = deque()
         if root:

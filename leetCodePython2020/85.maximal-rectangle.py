@@ -23,17 +23,14 @@ class Solution:
                 if matrix[i][j] != '0':
                     if j != 0:
                         dp[i][j] = dp[i][j-1]+1
-        # for i in dp:
-        #     print(i)
-        # optional
-        ori_dp = [dp[i][:] for i in range(row_len)]
+
         ans = 0
 
         for i in range(row_len):
             for j in range(col_len):
+
                 if dp[i][j] != 0:
-                    # optional
-                    if i > 0 and ori_dp[i-1][j] >= dp[i][j]:
+                    if i > 0 and dp[i-1][j] >= dp[i][j]:
                         continue
 
                     min_width = float('inf')
@@ -43,6 +40,10 @@ class Solution:
                             break
                         else:
                             min_width = min(min_width, dp[k][j])
+
+                            if min_width*(row_len-1-i+1) < ans:
+                                break
+
                             ans = max(ans, min_width*(k-i+1))
 
         return ans

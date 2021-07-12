@@ -22,7 +22,8 @@ class Solution:
             current = nums[m]
             if current < target:
                 l = m + 1
-            else:
+            # else:
+            elif current >= target:
                 r = m - 1
             if current == target:
                 index = m
@@ -36,7 +37,8 @@ class Solution:
             current = nums[m]
             if current > target:
                 r = m - 1
-            else:
+            # else:
+            elif current <= target:
                 l = m + 1
             if current == target:
                 index = m

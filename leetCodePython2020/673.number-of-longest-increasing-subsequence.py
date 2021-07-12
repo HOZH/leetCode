@@ -24,7 +24,7 @@ class Solution:
                 if nums[i] > nums[j]:
                     if dp[j]+1 > dp[i]:
                         # dp[i] = max(dp[i], dp[j]+1)
-                        dp[i]=dp[j]+1
+                        dp[i] = dp[j]+1
                         end_by_count[i] = end_by_count[j]
 
                     elif dp[j]+1 == dp[i]:

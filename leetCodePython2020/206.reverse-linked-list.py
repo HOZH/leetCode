@@ -13,21 +13,38 @@
 
 
 class Solution:
-
     def reverseList(self, head: ListNode) -> ListNode:
 
+        prev = None
+        current = head
+
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+
+        return prev
+
+    def reverseList_rec(self, head: ListNode) -> ListNode:
         self.first = None
 
         def helper(node):
-            if node is None:
+            if not node:
                 return None
+
             temp_next = node.next
+
             node.next = None
+
             temp = helper(temp_next)
+
             if temp:
                 temp.next = node
+
             else:
                 self.first = node
+
             return node
 
         helper(head)

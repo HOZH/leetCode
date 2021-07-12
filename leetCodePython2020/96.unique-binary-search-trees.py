@@ -10,7 +10,7 @@ from functools import lru_cache
 
 
 class Solution:
-    def numTrees_rec(self, n: int) -> int:
+    def numTrees(self, n: int) -> int:
         @lru_cache(None)
         def helper(start, end):
             if start >= end:
@@ -21,7 +21,7 @@ class Solution:
             return count
         return helper(1, n)
 
-    def numTrees(self, n: int) -> int:
+    def numTrees_mem(self, n: int) -> int:
 
         dp = [0]*(n+1)
         dp[0] = 1

@@ -17,16 +17,22 @@ class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
 
         def helper(node):
+
             if not node:
                 return 0
+
             left_d = helper(node.left)
             right_d = helper(node.right)
+
             if left_d == -1 or right_d == -1:
                 return -1
+
             if abs(left_d-right_d) > 1:
                 return -1
+
             return max(left_d, right_d)+1
 
-        return True if helper(root) != -1 else False
+        return helper(root) != -1
+
 
 # @lc code=end

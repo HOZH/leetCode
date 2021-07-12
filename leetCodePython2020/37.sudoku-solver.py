@@ -8,14 +8,14 @@
 
 
 class Solution:
+
     def solveSudoku(self, board) -> None:
         """
         Do not return anything, modify board in-place instead.
         """
-
-        self.rows = [[0 for i in range(10)] for j in range(9)]
-        self.cols = [[0 for i in range(10)] for j in range(9)]
-        self.boxes = [[0 for i in range(10)] for j in range(9)]
+        self.rows = [[0 for _ in range(10)] for _ in range(9)]
+        self.cols = [[0 for _ in range(10)] for _ in range(9)]
+        self.boxes = [[0 for _ in range(10)] for _ in range(9)]
 
         for i in range(9):
             for j in range(9):
@@ -59,7 +59,6 @@ class Solution:
                         return True
 
                     else:
-
                         self.rows[y][i] = 0
                         self.cols[x][i] = 0
                         self.boxes[box_key][i] = 0
@@ -68,7 +67,7 @@ class Solution:
 
             return False
 
-        a = helper(board, 0, 0)
+        helper(board, 0, 0)
 
 
 # @lc code=end

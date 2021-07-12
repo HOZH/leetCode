@@ -6,11 +6,30 @@
 
 # @lc code=start
 
+from bisect import bisect_left
+
 
 class Solution:
+
+    def lengthOfLIS(self, nums):
+
+        if len(nums) == 0:
+            return 0
+
+        tails = [float('inf')]*len(nums)
+
+        for i in nums:
+
+            current_index = bisect_left(tails, i)
+
+            tails[current_index] = i
+
+        return len(list(filter(lambda x: x != float('inf'), tails)))
+
     # (1) if x is larger than all tails, append it, increase the size by 1
     # (2) if tails[i-1] < x <= tails[i], update tails[i]
-    def lengthOfLIS(self, nums):
+
+    def lengthOfLIS_bs(self, nums):
         if len(nums) == 0:
             return 0
         tails = [0]*len(nums)

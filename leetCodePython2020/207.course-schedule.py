@@ -10,6 +10,51 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
 
+        in_d = [[] for _ in range(numCourses)]
+
+        visited, visiting = set(), set()
+        for i, j in prerequisites:
+
+            in_d[j].append(i)
+
+        def helper(node):
+
+            if node in visited:
+                return True
+
+            visiting.add(node)
+
+            for i in in_d[node]:
+                if i not in visited and i not in visiting:
+                    temp = helper(i)
+                    if not temp:
+                        return False
+
+                elif i in visiting:
+                    return False
+
+                elif i in visited:
+                    continue
+
+            visiting.remove(node)
+            visited.add(node)
+
+            return True
+
+        for i in range(numCourses):
+
+            current = helper(i)
+
+            if not current:
+                return False
+
+            if len(visited) == numCourses:
+                return True
+
+        return False
+
+    def canFinish_dfs(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+
         courses = [[] for _ in range(numCourses)]
 
         for i, j in prerequisites:
