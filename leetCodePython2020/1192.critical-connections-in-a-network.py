@@ -44,7 +44,6 @@ class Solution:
         dfs(head, -1, bridges)
         if len(graph[head]) > 1:
             cc.add(head)
-        print(cc)
         return bridges
 
 # @lc code=end

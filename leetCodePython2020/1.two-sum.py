@@ -32,7 +32,12 @@ class Solution:
         #         pool[target-current] = temp_set
 
         pool = dict()
-
+        
+        # [1,3,4]
+        # nums[0]
+        # pool[7-1]=[0] pool[6]=0
+        # pool[7-3]=[1]
+        # pool[4]   [1,2]
         for i in range(len(nums)):
             if nums[i] in pool:
                 return [pool[nums[i]], i]

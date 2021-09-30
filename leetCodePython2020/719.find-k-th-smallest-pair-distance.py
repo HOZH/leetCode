@@ -23,7 +23,7 @@ class Solution:
         #         count[nums[j] - nums[i]] += 1
 
         # for i in range(N):
-        #     k -= count[i] 
+        #     k -= count[i]
         #     if k <= 0:
         #         return i
 

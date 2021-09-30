@@ -31,7 +31,7 @@ class TimeMap:
 
         temp_heap = self.dic[key]
         place_holder = []
-
+        temp = None
         while len(temp_heap) > 0:
             temp = heapq.heappop(temp_heap)
             place_holder.append(temp)
@@ -46,7 +46,7 @@ class TimeMap:
         # heapq.heapify(temp_values)
         # self.dic[key] = temp_values
 
-        return temp[1] if -temp[0] <= timestamp else ''
+        return '' if not temp else temp[1] if -temp[0] <= timestamp else ''
 
 
 # Your TimeMap object will be instantiated and called as such:

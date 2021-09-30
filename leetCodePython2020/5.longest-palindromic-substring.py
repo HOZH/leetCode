@@ -34,7 +34,7 @@ class Solution:
             # even
             # even = helper(i, i+1)
             even_l, even_r = helper(i, i+1)
-            even_result = s[even_l:even_r+1] if even_l != even_r else ''
+            even_result = s[even_l:even_r+1]
 
             self.ans = max(self.ans, odd_result, even_result, key=len)
         return self.ans
