@@ -12,4 +12,7 @@ counters = [c1]
 for i in counters:
     if i==c2:
         print(123)
+# c1['c']-=1
+# del c1['c']
+print(len(c1.keys()))
 # print(c2 in b)
