@@ -12,7 +12,7 @@ from functools import lru_cache
 class Solution:
     def wordBreak(self, s: str, wordDict):
 
-        mem = dict()
+        # mem = dict()
         wordDict = set(wordDict)
         # mem[''] = True
 
