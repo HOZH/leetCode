@@ -1,3 +1,4 @@
 {
-    "workbench.colorTheme": "Dracula Soft"
+    "workbench.colorTheme": "Dracula Soft",
+    "python.formatting.provider": "autopep8"
 }

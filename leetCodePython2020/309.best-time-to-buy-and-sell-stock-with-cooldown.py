@@ -16,10 +16,9 @@ class Solution:
         # sold->from previous rest
         for i in range(len(prices)):
             prev_rest, prev_hold, prev_sold = rest, hold, sold
+            rest = max(prev_rest, prev_sold)
             hold = max(prev_hold, prev_rest-prices[i])
             sold = prev_hold+prices[i]
-            rest = max(prev_rest, prev_sold)
-
         return max(sold, rest)
 
 
