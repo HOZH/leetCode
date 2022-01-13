@@ -5,11 +5,19 @@
 #
 
 # @lc code=start
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 
 class Solution:
     def areOccurrencesEqual(self, s: str) -> bool:
+        if not len(s):
+            return True
+        counter = Counter(s)
+        values = list(counter.values())
+        temp = values[0]
+        return values.count(temp) == len(s)/temp
+
+    def areOccurrencesEqualTemp(self, s: str) -> bool:
 
         counter = defaultdict(int)
         for c in s:
