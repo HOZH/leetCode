@@ -1,63 +1,68 @@
+from collections import Counter
 class Solution:
-    def buddyStrings(self, s: str, goal: str) -> bool:
+    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        pos1, pos2 = None, None
+        shortestDicstance = float('inf')
+        for i, word in enumerate(wordsDict):
+            if word1 == word:
+                if pos2 != None:
+                    shortestDicstance = min(shortestDicstance, abs(pos2-i))
+                pos1 = i
+            elif word2 == word:
+                if pos1 != None:
+                    shortestDicstance = min(shortestDicstance, abs(pos1-i))
+                pos2 = i
+        return shortestDicstance
 
-        if len(s) != len(goal):
-            return False
-        if not len(s):
-            return False
-        if s == goal and len(s)-len(set(s))<1:
-            return False 
-
-        diff_count = 0
-        s_set, goal_set = set(), set()
-        for i in range(len(s)):
-            if s[i] != goal[i]:
-                diff_count += 1
-                s_set.add(s[i])
-                goal_set.add(goal[i])
-            if diff_count > 2:
-                return False
-
-
-        return s_set == goal_set
-"""
-
-        if s == goal:
-            seen = set()
-            for a in s:
-                if a in seen:
-                    return True
-                seen.add(a)
-            return False
-        "ab"
-"ab"
-s"""
 
 class Solution:
-    def buddyStrings(self, s: str, goal: str) -> bool:
-        counter = Counter(s)
-        if counter != Counter(goal): return False
-        max_duplicate = max(counter.values())
-        if max_duplicate<2 and s==goal:return False
-        if max_duplicate>=2 and s==goal: return True
+    def stringMatching(self, words: List[str]) -> List[str]:
+        ans = []
+        for i in words:
+            for j in words:
+                if i in j and len(i) != len(j):
+                    ans.append(i)
+
+        return set(ans)
+
+
+class Solution:
+    def minimumMoves(self, s: str) -> int:
+
         count = 0
-        for c1, c2 in zip(s, goal):
-            if c1!=c2: count+=1
-        return count == 2
+        covered_len = 0
+        for i in range(len(s)):
+            current = s[i]
+            if current == 'O':
+                covered_len = max(0, covered_len-1)
+            elif current == 'X':
+                if covered_len != 0:
+                    covered_len -= 1
+                else:
+                    count += 1
+                    covered_len = 2
+
+        return count
+
+class Solution:
+    def minimumMoves(self, s: str) -> int:
+        ans = i = 0
+        while i < len(s): 
+            if s[i] == "X": 
+                ans += 1
+                i += 3
+            else: i += 1
+        return ans 
 
 
 class Solution:
-    def checkOnesSegment(self, s: str) -> bool:
+    def longestPalindrome(self, s: str) -> int:
 
-        start = s.find('1')
-        flag = True
-
-        for i in range(start+1, len(s)):
-            if s[i] == '1':
-                if not flag:
-                    return False
-
-            elif s[i] == '0':
-                flag = False
-
-        return True
+        counter = Counter(s)
+        ans = 0
+        for i in counter.values():
+            ans += i//2
+        ans *= 2
+        if ans < len(s):
+            ans += 1
+        return ans
