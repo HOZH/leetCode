@@ -1,26 +1,52 @@
-
-
 class Solution:
-    def getMaximumGenerated(self, n: int) -> int:
-        if n<3: return (0,1,1)[n]
-        dp = [0]*(n+1)
-        dp[1]=1
+    def mctFromLeafValues(self, arr: List[int]) -> int:
+
+        N = len(arr)
         
-        for i in range(2, n+1):
-            dp[i] = dp[i//2] if i%2==0 else dp[(i-1)//2]+dp[(i-1)//2+1]
+        if N==1: return arr[0]
+        if N==2: return arr[0]*arr[2]
+
+        dp = [[float('inf')]*N for _ in range(N)]
+        for i in range(N):
+            for j in range(N):
+                if j==i:
+                    dp[i][j] = 0
+                    
+        for i in range(N-1):
+            for k in range(i, N-1):
+                for j in range(k+1, N):
+                    print(dp, i, k, j)
+                    dp[i][j] = max(arr[i:k+1])*max(arr[k+1:j+1])+dp[i][k]+dp[k+1][j]
+                    
+            
+            
+        print(dp)
         return max(dp)
 
 
-class Solution:
-    def getMaximumGenerated(self, n: int) -> int:
-        if n < 2:
-            return n
-        dp = [0]*(n+1)
-        dp[0], dp[1] = 0, 1
 
-        for i in range(2, n+1):
-            if i % 2 == 0:
-                dp[i] = dp[i//2]
-            else:
-                dp[i] = dp[i//2]+dp[i//2+1]
-        return max(dp)
+    """
+        [   48    ]
+        [ 12  32 ]
+        [6,2,4,8]
+
+
+                48
+        [   24    ]
+        [ 12   ]
+        [6,2,4,8]
+        
+        
+        
+               48 
+        24
+            8
+        [6,2,4,8]
+        """
+
+    def mctFromLeafValues(self, A):
+        res = 0
+        while len(A) > 1:
+            i = A.index(min(A))
+            res += min(A[i - 1:i] + A[i + 1:i + 2]) * A.pop(i)
+        return res
