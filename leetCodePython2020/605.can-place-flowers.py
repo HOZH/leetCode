@@ -1,23 +1,10 @@
-class Solution:
-    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        maxFlowers = 0
-        
-        if flowerbed[0]==0 and len(flowerbed)==1 or flowerbed[0]==0 and flowerbed[1]==0:
-            flowerbed[0]=1
-            maxFlowers+=1
-        if flowerbed[-1]==0 and len(flowerbed)==1 or flowerbed[-1]==0 and flowerbed[-2]==0:
-            flowerbed[-1]=1
-            maxFlowers+=1
-        
-        
-        for i in range(len(flowerbed)):
-            if 1<=i<len(flowerbed)-1 and flowerbed[i-1]==0 and flowerbed[i]==0 and flowerbed[i+1]==0:
-                flowerbed[i]=1
-                maxFlowers+=1
+#
+# @lc app=leetcode id=605 lang=python3
+#
+# [605] Can Place Flowers
+#
 
-        return n<=maxFlowers
-
-
+# @lc code=start
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
         if n == 0:
@@ -37,3 +24,8 @@ class Solution:
             current_index = next_index
             next_index += 1
         return False
+
+
+        
+# @lc code=end
+
