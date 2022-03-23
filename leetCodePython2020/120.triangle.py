@@ -15,7 +15,7 @@ class Solution:
             return triangle[0][0]
         dp = [i[:] for i in triangle]
 
-        # skip last layer
+        # skip last layertemp
         for i in range(len(triangle)-2, -1, -1):
 
             for j in range(len(triangle[i])):
