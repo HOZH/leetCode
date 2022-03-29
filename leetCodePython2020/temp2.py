@@ -1,42 +1,67 @@
 class Solution:
-    def smallestCommonElement(self, mat: List[List[int]]) -> int:
-        M, N = len(mat), len(mat[0])
-        hash_dict = {}
-        for i in range(M):
-            for j in range(N):
-                if mat[i][j] not in hash_dict:
-                    hash_dict[mat[i][j]]=0
-                hash_dict[mat[i][j]]+=1
-        print(hash_dict)
-        return max(hash_dict.values())==M
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:
+        ans = []
+        if nums:
+            if lower>nums[0]:
+                nums = [n for n in nums if n>lower]
+            nums = [lower-1]+nums
+            if upper<nums[-1]:
+                nums = [n for n in nums if n<upper]
+            nums.append(upper+1)
+        else:
+            nums=[lower-1, upper+1]
+            
+        for i in range(len(nums)-1):
+            print(i)
+            if nums[i+1]-nums[i]==2:
+                ans.append(str(nums[i]+1))
+            elif nums[i+1]-nums[i]>2:
+                ans.append(str(nums[i]+1)+'->'+str(nums[i+1]-1))
+        
+        return ans
+
 
 class Solution:
-    def smallestCommonElement(self, mat: List[List[int]]) -> int:
-        sets = []
-        for row in mat:
-            sets.append(set(row))
-        temp = list(reduce(lambda x, y: x & y, sets))
-        if not len(temp):
-            return -1
-        return min(temp)
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:
+        if len(nums) == 0:
+            if lower == upper:
+                return [str(lower)]
+            return [str(lower)+'->'+str(upper)]
+        nums.sort()
+        # nums_set = set(nums)
+        # current_list = []
+        placeholder = []
+        # head, tail = 0, float('inf')
+        prev, current = 0, 0
+        placeholder.append([prev+1, upper])
 
-m * n 
+        for i in range(len(nums)):
+
+            current = nums[i]
+            head, tail = prev+1, current-1
+            placeholder.append([head, tail])
+            prev = current
+
+        placeholder.append([prev+1, upper])
+        print(placeholder)
+
+        result = []
+        for i in placeholder:
+            if i[0] > i[1]:
+                continue
+            elif i[0] == i[1]:
+                result.append(str(i[0]))
+            else:
+                result.append(str(i[0])+'->'+str(i[1]))
+
+        return result
+
+
 """
-m*n
+[-1]
+-2
+-1
 
-1111
-1 1 225
-1133
+[ -2 ]
 
-
-n*m*log(n)
- log(m)
-
-
-nm log(n)nm lo"""
-
-
- n*m
-
- 
-
+"""
