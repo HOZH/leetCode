@@ -1,67 +1,39 @@
-class Solution:
-    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:
+class Solution(object):
+    def generateParenthesis(self, N):
         ans = []
-        if nums:
-            if lower>nums[0]:
-                nums = [n for n in nums if n>lower]
-            nums = [lower-1]+nums
-            if upper<nums[-1]:
-                nums = [n for n in nums if n<upper]
-            nums.append(upper+1)
-        else:
-            nums=[lower-1, upper+1]
-            
-        for i in range(len(nums)-1):
-            print(i)
-            if nums[i+1]-nums[i]==2:
-                ans.append(str(nums[i]+1))
-            elif nums[i+1]-nums[i]>2:
-                ans.append(str(nums[i]+1)+'->'+str(nums[i+1]-1))
-        
+        def bk(s, left, right):
+            if len(s) == 2*N:
+                ans.append(s)
+                return
+            if left<N:
+                bk(s+'(', left+1, right) # called N times"""
+            if right<left:
+                bk(s+')', left, right+1) # 
+        bk('', 0, 0)
         return ans
 
 
 class Solution:
-    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[str]:
-        if len(nums) == 0:
-            if lower == upper:
-                return [str(lower)]
-            return [str(lower)+'->'+str(upper)]
-        nums.sort()
-        # nums_set = set(nums)
-        # current_list = []
-        placeholder = []
-        # head, tail = 0, float('inf')
-        prev, current = 0, 0
-        placeholder.append([prev+1, upper])
+    def generateParenthesis(self, n: int) -> List[str]:
 
-        for i in range(len(nums)):
+        self.ans = []
 
-            current = nums[i]
-            head, tail = prev+1, current-1
-            placeholder.append([head, tail])
-            prev = current
+        def helper(left, right, s):
 
-        placeholder.append([prev+1, upper])
-        print(placeholder)
+            if left == 0 == right:
 
-        result = []
-        for i in placeholder:
-            if i[0] > i[1]:
-                continue
-            elif i[0] == i[1]:
-                result.append(str(i[0]))
-            else:
-                result.append(str(i[0])+'->'+str(i[1]))
+                self.ans.append(s)
+                return
+            # avoiding the cases where string will contain leading '('
 
-        return result
+            if right < left:
+                return
 
+            if left > 0:
+                helper(left-1, right, s+'(')
+            if right > 0:
+                helper(left, right-1, s+')')
+        helper(n, n, '')
 
-"""
-[-1]
--2
--1
+        return self.ans
 
-[ -2 ]
-
-"""
