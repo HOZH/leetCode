@@ -1,39 +1,51 @@
-class Solution(object):
-    def generateParenthesis(self, N):
-        ans = []
-        def bk(s, left, right):
-            if len(s) == 2*N:
-                ans.append(s)
-                return
-            if left<N:
-                bk(s+'(', left+1, right) # called N times"""
-            if right<left:
-                bk(s+')', left, right+1) # 
-        bk('', 0, 0)
+class Solution:
+    def minimumKeypresses(self, s: str) -> int:
+        counter = Counter(s)
+        key_press_pairs = [(key, counter[key]) for key in counter]
+        key_press_pairs.sort(key=lambda x: x[1], reverse=True)
+        ans = 0
+        for i in range(len(key_press_pairs)):
+            key, press = key_press_pairs[i]
+            if i<9:
+                ans+=press*1
+            elif i<18:
+                ans+=press*2
+            else:
+                ans+=press*3
         return ans
 
 
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        negative, positive = [], []
+        for i in nums:
+            if i < 0:
+                negative.append(i)
+            else:
+                positive.append(i)
+        result = []
+        for i in range(len(positive)):
+            result.append(positive[i])
+            result.append(negative[i])
+        return result
 
-        self.ans = []
 
-        def helper(left, right, s):
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        ans = set()
+        for n in nums:
+            if n in ans:
+                ans.remove(n)
+            else:
+                ans.add(n)
+        return ans
 
-            if left == 0 == right:
-
-                self.ans.append(s)
-                return
-            # avoiding the cases where string will contain leading '('
-
-            if right < left:
-                return
-
-            if left > 0:
-                helper(left-1, right, s+'(')
-            if right > 0:
-                helper(left, right-1, s+')')
-        helper(n, n, '')
-
-        return self.ans
-
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        temp = set()
+        for i in nums:
+            if i in temp:
+                temp.remove(i)
+            else:
+                temp.add(i)
+        return temp
