@@ -14,7 +14,7 @@ class Solution:
         c1, c2 = Counter(word1), Counter(word2)
         c1.subtract(c2)
 
-        for _, freq in c1.items():
+        for freq in c1.values():
             if abs(freq) > 3:
                 return False
 

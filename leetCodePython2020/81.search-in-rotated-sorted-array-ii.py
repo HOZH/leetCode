@@ -24,6 +24,7 @@ class Solution:
                 pre = nums[i]
 
         nums = temp
+        print(nums)
 
         length = len(nums)
         l, r = 0, length - 1

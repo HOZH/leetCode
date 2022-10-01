@@ -1,51 +1,45 @@
-class Solution:
-    def minimumKeypresses(self, s: str) -> int:
-        counter = Counter(s)
-        key_press_pairs = [(key, counter[key]) for key in counter]
-        key_press_pairs.sort(key=lambda x: x[1], reverse=True)
-        ans = 0
-        for i in range(len(key_press_pairs)):
-            key, press = key_press_pairs[i]
-            if i<9:
-                ans+=press*1
-            elif i<18:
-                ans+=press*2
-            else:
-                ans+=press*3
-        return ans
+# class Solution:
+#     def maxSumMinProduct(self, nums: List[int]) -> int:
+#         length = len(nums)
+#         dp_sum = [[0 for _ in range(length+1)] for _ in range(length+1)]
+#         dp_min = [[0 for _ in range(length+1)] for _ in range(length+1)]
+
+#         for i in range(1, length+1):
+#             for j in range(1, length+1):
+#                 dp_sum[i][j] = dp_sum[i][j-1]+nums[j-1]
+#                 dp_min[i][j] = min(dp_min[i][j-1], nums[j-1])
+#         # print(dp_sum)
+#         # print(dp_min)
+
+#         result = float('-inf')
+
+#         for i in range(len(dp_sum)):
+#             for j in range(len(dp_sum[0])):
+
+#                 result = max(dp_sum[i][j], result)
+
+#         return result
 
 
-class Solution:
-    def rearrangeArray(self, nums: List[int]) -> List[int]:
-        negative, positive = [], []
-        for i in nums:
-            if i < 0:
-                negative.append(i)
-            else:
-                positive.append(i)
-        result = []
-        for i in range(len(positive)):
-            result.append(positive[i])
-            result.append(negative[i])
-        return result
+# def inorderTraversal(self, root: TreeNode) -> List[int]:
+
+#     bag, visited = deque([root]), []
+#     while(len(bag)):
+#         current = bag.pop()
+
+#         if current not in visited:
+#             visited.append(current.val)
+#             if current.right:
+#                 bag.append(current.right)
+#             if current.left:
+#                 bag.append(current.left)
+
+#     print(visited[::])
 
 
-class Solution:
-    def singleNumber(self, nums: List[int]) -> List[int]:
-        ans = set()
-        for n in nums:
-            if n in ans:
-                ans.remove(n)
-            else:
-                ans.add(n)
-        return ans
+from collections import Counter
+temp = Counter('bracccadabra')
 
-class Solution:
-    def singleNumber(self, nums: List[int]) -> List[int]:
-        temp = set()
-        for i in nums:
-            if i in temp:
-                temp.remove(i)
-            else:
-                temp.add(i)
-        return temp
+print(temp)
+print(temp.keys())
+print(temp.items())
