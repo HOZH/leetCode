@@ -44,6 +44,20 @@ class Solution:
         length = len(nums)
         if length == 1:
             return 0 if target <= nums[0] else 1
+        l, r = 0, length
+
+        while l < r:
+            m = l+(r-l)//2
+            if nums[m] >= target:
+                r = m
+            else:
+                l = m+1
+        return l
+
+    def searchInsert_old(self, nums, target: int) -> int:
+        length = len(nums)
+        if length == 1:
+            return 0 if target <= nums[0] else 1
 
         l, r = 0, length-1
 

@@ -21,6 +21,26 @@ class Solution:
         if root is None:
             return None
 
+        self.bag = []
+
+        def helper(node):
+            if node is None:
+                return 0
+            left_sub_sum = helper(node.left)
+            right_sub_sum = helper(node.right)
+
+            local_sum = node.val + left_sub_sum + right_sub_sum
+
+            self.bag.append(local_sum)
+
+            return local_sum
+
+        helper(root)
+        temp = Counter(self.bag)
+        max_count = temp.most_common(1)[0][1]
+
+        return [i for (i, _) in filter(lambda x:x[1] == max_count, temp.items())]
+
         def assign_val_helper(node):
             # could just use Counter directly instead of write up this whole function
 

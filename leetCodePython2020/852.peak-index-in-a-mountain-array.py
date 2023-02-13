@@ -10,7 +10,7 @@
 class Solution:
     def peakIndexInMountainArray(self, A: List[int]) -> int:
 
-        l, r = 0, len(A)
+        l, r = 0, len(A)-1
 
         while l < r:
 

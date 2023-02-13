@@ -17,18 +17,8 @@ class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
 
         self.result = []
-        # def pre_order(node):
-
-        #     if not node:
-        #         return
-
-        #     self.result.append(node.val)
-        #     pre_order(node.left)
-        #     pre_order(node.right)
-
-        # pre_order(root)
-
         stack = deque()
+        
         if root:
             stack.appendleft(root)
 

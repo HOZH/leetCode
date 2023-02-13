@@ -21,15 +21,13 @@ class Solution:
         # self.arr = []
 
         # def inorder(node):
-        #     if node is None:
+        #     if not node:
         #         return
-
         #     inorder(node.left)
         #     self.arr.append(node.val)
         #     inorder(node.right)
-
+        
         # inorder(root)
-
         # return self.arr
 
         result = []

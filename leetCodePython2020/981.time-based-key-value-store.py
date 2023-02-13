@@ -23,7 +23,7 @@ class TimeMap:
 
         heapq.heappush(temp_heap, (-timestamp, value))
 
-        self.dic[key] = temp_heap
+        # self.dic[key] = temp_heap
 
     def get(self, key: str, timestamp: int) -> str:
 

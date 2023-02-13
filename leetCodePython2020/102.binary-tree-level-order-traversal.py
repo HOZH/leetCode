@@ -12,27 +12,43 @@
 #         self.left = left
 #         self.right = right
 
-
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
         self.ans = []
+        bag = [root]
 
-        def helper(node, arr, layer):
+        while len(bag) > 0:
+            temp_bag = bag[:]
+            bag = []
+            for i in temp_bag:
+                if i.left:
+                    bag.append(i.left)
+                if i.right:
+                    bag.append(i.right)
 
-            if node is None:
-                return
-
-            if len(arr) < layer+1:
-                arr.append([])
-
-            arr[layer].append(node.val)
-
-            helper(node.left, arr, layer+1)
-            helper(node.right, arr, layer+1)
-
-        helper(root, self.ans, 0)
-
+            self.ans.append(list(map(lambda x: x.val, temp_bag)))
         return self.ans
+
+        # self.ans = []
+
+        # def helper(node, arr, layer):
+
+        #     if node is None:
+        #         return
+
+        #     if len(arr) < layer+1:
+        #         arr.append([])
+
+        #     arr[layer].append(node.val)
+
+        #     helper(node.left, arr, layer+1)
+        #     helper(node.right, arr, layer+1)
+
+        # helper(root, self.ans, 0)
+
+        # return self.ans
 
 
 # @lc code=end

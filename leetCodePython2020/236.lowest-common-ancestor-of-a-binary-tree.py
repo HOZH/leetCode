@@ -18,30 +18,27 @@ class Solution:
 
         self.ans = None
 
-        def helper(node, a, b, x, y):
+        def helper(node):
 
             # can add a determineter to end once the ans is found
             if node is None:
                 return False, False
 
-            if node == a:
-                b = True
-            if node == x:
-                y = True
+            left = helper(node.left)
+            right = helper(node.right)
 
-            left = helper(node.left, a, False, x, False)
-            right = helper(node.right, a, False, x, False)
+            is_p_included = True if (
+                node == p or left[0] or right[0]) else False
+            is_q_included = True if (
+                node == q or left[1] or right[1]) else False
 
-            b = True if(b or left[0] or right[0]) else False
-            y = True if(y or left[1] or right[1]) else False
-
-            if b and y:
+            if is_p_included and is_q_included:
                 if self.ans is None:
                     self.ans = node
 
-            return b, y
+            return is_p_included, is_q_included
 
-        helper(root, p, False, q, False)
+        helper(root)
         return self.ans
 
 

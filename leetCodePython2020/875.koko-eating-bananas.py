@@ -16,24 +16,13 @@ class Solution:
         l, r = 1, max(piles)
         if H == len(piles):
             return r
-
-        result = -1
-        while l <= r:
-
-            pivot = l + (r - l) // 2
-
-            # temp = sum(
-            #     list(map(lambda x: 1 if x <= pivot else (math.ceil(x / pivot)), piles)))
-
-            # if temp <= H:
-            if possible(pivot):
-                r = pivot - 1
-                result = pivot
-
+        while l < r:
+            m = l + (r-l)//2
+            if possible(m):
+                r = m
             else:
-                # 2 slow, increasing lower bound
-                l = pivot + 1
-        return result
+                l = m + 1
+        return l
 
 
 # @lc code=end

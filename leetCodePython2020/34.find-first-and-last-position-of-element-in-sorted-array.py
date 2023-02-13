@@ -18,7 +18,7 @@ class Solution:
         l_result, r_result = 0, length - 1
         index = -1
         while l <= r:
-            m = l + (r - l) // 2
+            m = l + (r-l) // 2
             current = nums[m]
             if current < target:
                 l = m + 1

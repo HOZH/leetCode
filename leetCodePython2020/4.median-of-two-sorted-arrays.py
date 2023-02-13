@@ -24,15 +24,18 @@ class Solution:
             m1 = l + (r - l) // 2
             m2 = k - m1
             # m2-1 since it's 0 indexed
-            if A[m1] < B[m2 - 1]:
+            if A[m1] >= B[m2 - 1]:
                 # need more ele from A, raising m1
-                l = m1 + 1
-
-            else:
                 r = m1
+            else:
+                l = m1+1
 
         m1 = l
         m2 = k - l
+        # m2 -1 = m2 eles from B
+        # m1 -1 = m1 else from A
+        # since m1,m2 is the count of eles but arrs are 0 indexed
+        
         c1 = max(float('-inf') if m1 <=
                  0 else A[m1 - 1], float('-inf') if m2 <= 0 else B[m2 - 1])
 

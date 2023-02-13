@@ -29,9 +29,10 @@ class Solution:
         # return self.ans
 
         self.ans = []
+        self.target_count = len(nums)
 
-        def p(nums, target_count, depth, used, current_list):
-            if depth == target_count:
+        def p(nums, depth, used, current_list):
+            if depth == self.target_count:
                 # self.ans.append(current_list[:])
                 self.ans.append(current_list)
 
@@ -41,13 +42,13 @@ class Solution:
                     continue
                 used[i] = True
                 # current_list.append(nums[i])
-                p(nums, target_count, depth+1, used, current_list+[nums[i]])
+                p(nums, depth+1, used, current_list+[nums[i]])
                 # p(nums, target_count, depth+1, used, current_list)
 
                 # current_list.pop()
                 used[i] = False
 
-        p(nums, len(nums), 0, [False]*len(nums), [])
+        p(nums,  0, [False]*len(nums), [])
         return self.ans
 
 

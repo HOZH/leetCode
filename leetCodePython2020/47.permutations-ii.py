@@ -10,11 +10,12 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         self.ans = []
+        target_count = len(nums)
         nums.sort()
 
-        def helper(nums, target_count, depth, used, current_list, ans):
+        def helper(nums, depth, used, current_list, ans):
 
-            if target_count == depth:
+            if depth == target_count:
                 ans.append(current_list)
                 return
 
@@ -22,19 +23,19 @@ class Solution:
                 if used[i]:
                     continue
                 if i > 0 and nums[i] == nums[i-1] and not used[i-1]:
-                    # used[i-1] implies prev identical num has been used in given
-                    # context since nums[i] == nums[i-1]
+                    # used[i-1] implies prev identical num has been used in the
+                    # given context since nums[i] == nums[i-1]
                     # this operation require a sorted nums
                     # used i-1 == false means prev identical num was not selected
                     # therefore the current num should also be skipped as well
                     continue
 
                 used[i] = True
-                helper(nums, target_count, depth+1,
+                helper(nums, depth+1,
                        used, current_list+[nums[i]], ans)
                 used[i] = False
 
-        helper(nums, len(nums), 0, [False]*len(nums), [], self.ans)
+        helper(nums, 0, [False]*len(nums), [], self.ans)
         return self.ans
 
 # @lc code=end

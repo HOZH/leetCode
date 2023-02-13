@@ -21,10 +21,10 @@ class Solution:
 
         while l < r:
             pivot = l + (r-l)//2
-            if sum(bisect(row, pivot) for row in matrix) < k:
-                l = pivot+1
-            else:
+            if sum(bisect(row, pivot) for row in matrix) >= k:
                 r = pivot
+            else:
+                l = pivot+1
 
         return l
 

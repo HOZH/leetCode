@@ -14,36 +14,27 @@ class Solution:
             return False
 
         first_items = [i[0] for i in matrix]
+        l, r = 0, len(matrix)
 
-        l, r = 0, len(matrix)-1
-        row = -1
-        while l <= r:
-            pivot = l+(r-l)//2
-            if first_items[pivot] == target:
-                return True
-
-            elif target < first_items[pivot]:
-                r = pivot-1
-
+        while l < r:
+            m = l + (r - l) // 2
+            if first_items[m] > target:
+                r = m
             else:
-                l = pivot+1
+                l = m + 1
 
-        row = row if row != -1 else r
-
+        row = l-1 if l >= 1 else 0
         arr = matrix[row]
+        l, r = 0, len(arr)
 
-        l, r = 0, len(arr)-1
-        while l <= r:
-            pivot = l+(r-l)//2
+        while l < r:
+            pivot = l + (r - l) // 2
             if arr[pivot] == target:
                 return True
-
-            elif target < arr[pivot]:
-                r = pivot-1
-
+            elif arr[pivot] > target:
+                r = pivot
             else:
-                l = pivot+1
-
+                l = pivot + 1
         return False
 
 

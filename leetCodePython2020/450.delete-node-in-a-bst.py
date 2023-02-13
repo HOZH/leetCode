@@ -95,6 +95,7 @@ class Solution:
                 temp_right = replacement.right
 
                 # root.left sub-tree always only contains eles samller or equal to replacement
+                # at this point, replacement has no left children
                 replacement.left = root.left
                 # avoid cycle
                 if root.right != replacement:

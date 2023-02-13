@@ -16,7 +16,7 @@
 class Solution:
     def minCameraCover(self, root: TreeNode) -> int:
         # bottom up greedy search
-        count = [0]
+        self.count = 0
 
         # dfs
         # covered, cover other
@@ -24,19 +24,19 @@ class Solution:
         # True,True
         # False,False
 
-        def postorder(node, c):
+        def postorder(node):
 
             if node is None:
                 return None
 
-            left = postorder(node.left, c)
+            left = postorder(node.left)
 
-            right = postorder(node.right, c)
+            right = postorder(node.right)
 
             # set up a camera at current node
             # when any of its children needs support from it
             if (left and left[0] == False) or (right and right[0] == False):
-                c[0] += 1
+                self.count += 1
                 return True, True
 
             # case leaves included here
@@ -48,11 +48,11 @@ class Solution:
             else:
                 return True, False
 
-        temp = postorder(root, count)
+        temp = postorder(root)
         if temp[0] == False:
-            count[0] += 1
+            self.count += 1
 
-        return count[0]
+        return self.count
 
 
 # @lc code=end

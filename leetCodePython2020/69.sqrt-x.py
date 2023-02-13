@@ -10,24 +10,15 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
 
-        l, r = 0, x
-
-        while l <= r:
-
-            pivot = l+(r-l)//2
-
-            temp = pivot**2
-            if temp == x:
-                # if temp == x or (temp < x and (pivot+1)**2 > x):
-                return pivot
-
-            elif temp > x:
-                r = pivot-1
-
+        l, r = 0, x+1
+        while l < r:
+            m = l + (r-l)//2
+            temp = m**2
+            if temp > x:
+                r = m
             else:
-                if (pivot+1)**2 > x:
-                    return pivot
-                l = pivot+1
-
+                l = m+1
+        # round down to the neareset integer
+        return l - 1
 
 # @lc code=end

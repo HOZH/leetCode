@@ -10,13 +10,12 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], D: int) -> int:
 
-        def helper(w):
+        def is_possible(w):
             count = 0
             remaining = w
             for i in weights:
                 if count > D:
                     return False
-
                 if i <= remaining:
                     remaining -= i
                 else:
@@ -26,20 +25,14 @@ class Solution:
             return count+1 <= D
 
         l, r = max(weights), sum(weights)
-        result = r
 
-        while l <= r:
-
+        while l < r:
             m = l + (r-l)//2
-
-            if helper(m):
-                r = m-1
-                # result = min(m, result)
-                result = m
-
+            if is_possible(m):
+                r = m
             else:
                 l = m+1
 
-        return result
+        return l
 
 # @lc code=end
