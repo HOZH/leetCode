@@ -38,7 +38,7 @@ class Solution:
 
         for i in range(1, temp):
 
-            dp[i] = max(dp[i-1], arr[i] + (0 if i-2 < 0 else dp[i-2]))
+            dp[i] = max(dp[i-1], arr[i] + (0 if i-1 == 0 else dp[i-2]))
 
         return dp[-1]
 

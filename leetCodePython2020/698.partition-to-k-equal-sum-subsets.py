@@ -40,6 +40,8 @@ class Solution:
 
                 tried.add(subsets[i])
 
+            return False
+
         return recurse(len(nums)-1, [0]*k)
 
     def canPartitionKSubsets_1(self, nums, k: int) -> bool:

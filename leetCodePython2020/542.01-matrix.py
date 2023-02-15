@@ -30,8 +30,6 @@ class Solution:
                         ans[i][j] = min(ans[i][j], ans[i+1][j]+1)
                     if j < n-1:
                         ans[i][j] = min(ans[i][j], ans[i][j+1]+1)
-                else:
-                    ans[i][j] = 0
         return ans
 
     def updateMatrix_bfs(self, matrix):
