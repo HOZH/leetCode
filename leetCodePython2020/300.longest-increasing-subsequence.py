@@ -10,8 +10,18 @@ from bisect import bisect_left
 
 
 class Solution:
-
     def lengthOfLIS(self, nums):
+
+        dp = [0]*len(nums)
+        for i in range(len(nums)):
+            
+            for j in range(i):
+                if nums[j]<nums[i]:
+                    dp[i] = max(dp[i],dp[j])
+            dp[i]+=1
+        return max(dp)
+
+    def lengthOfLI1S(self, nums):
 
         if len(nums) == 0:
             return 0

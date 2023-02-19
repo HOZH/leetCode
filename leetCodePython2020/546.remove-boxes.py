@@ -10,7 +10,7 @@
 class Solution:
     def removeBoxes(self, boxes: List[int]) -> int:
 
-        @functools.lru_cache(None)
+        @lru_cache(None)
         def helper(l, r, k):
 
             # l starting index, r ending index, k how many boxes after r

@@ -21,7 +21,8 @@ class Solution:
         # len of two words contatnation that has the same chars at the ending of a and the beginging of b
         temp = [[0 for _ in range(length)] for _ in range(length)]
 
-        #
+        # binary number 010 represents the second word is used but the first one and the third one
+        # dp[i][j] i -> binary representation of used word seq, j-> ends with j-th word, dp-> the min length of the cancatenated string of (i,j)
         dp = [[241 for _ in range(length)] for _ in range(1 << length)]
         parent = [[-1 for _ in range(length)] for _ in range(1 << length)]
 
@@ -63,7 +64,9 @@ class Solution:
             for j in range(length):
 
                 if not (s & (1 << j)):
-                    # 1<<j bigger than s
+                    # 1<<j bigger than s -> I think this def is wrong
+                    # updated definition -> s: seq of filled digit
+                    # this condition implies j is not included in s
                     continue
 
                 # s except j's are all filled up
@@ -78,13 +81,15 @@ class Solution:
 
         placeholder = float('inf')
         ending = -1
-        for i in range(length):
-
-            if dp[(1 << length) - 1][i] < placeholder:
-                placeholder = dp[(1 << length) - 1][i]
-                ending = i
 
         mask = (1 << length) - 1
+
+        for i in range(length):
+
+            if dp[mask][i] < placeholder:
+                placeholder = dp[mask][i]
+                ending = i
+
         current = ''
         while mask != 0:
 

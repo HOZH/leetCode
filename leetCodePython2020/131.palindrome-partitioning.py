@@ -61,7 +61,7 @@ class Solution:
                 temp += sub[i]
                 if temp == temp[::-1]:
                     local_sub = [temp]
-                    if sub[i + 1:] in d:
+                    if temp in d:
                         sub_result = d[sub[i + 1:]]
                     else:
                         sub_result = helper(sub[i + 1:])
