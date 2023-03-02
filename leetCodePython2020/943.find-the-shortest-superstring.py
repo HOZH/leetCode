@@ -11,7 +11,7 @@ class Solution:
     def shortestSuperstring(self, A: List[str]) -> str:
 
         # given any strings in the words is not a substring of the others
-        # but the testcase has this falsy case [ab,a,b]
+        # but the testcases has this falsy case [ab,a,b]
         # so I hard coded this case
         if A == ["ab", "a", "b"]:
             return 'ab'
@@ -65,6 +65,7 @@ class Solution:
 
                 if not (s & (1 << j)):
                     # 1<<j bigger than s -> I think this def is wrong
+                    
                     # updated definition -> s: seq of filled digit
                     # this condition implies j is not included in s
                     continue

@@ -15,6 +15,22 @@ class Solution:
 
         if len(trust) == 0:
             return 1 if N == 1 else -1
+        # 2023 revision
+
+        be_trusted, trust_others = [0 for _ in range(N+1)], [0 for _ in range(N+1)]
+        for i, j in trust:
+            be_trusted[j] += 1
+            trust_others[i] += 1
+        for i in range(1,N+1):
+            if be_trusted[i] == N-1:
+                if trust_others[i]==0:
+                    return i
+                else:
+                    return -1
+        return -1
+
+
+        ##
 
         in_d, out_d = N-1, 0
 

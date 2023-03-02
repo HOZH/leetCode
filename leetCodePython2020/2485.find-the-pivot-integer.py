@@ -7,17 +7,20 @@
 # @lc code=start
 class Solution:
     def pivotInteger(self, n: int) -> int:
-        total = n*(n+1)/2
-        # if not target.is_integer():
-        #     return -1
-        # temp = 0
-        # for i in range(n+1):
+        target = n*(n+1)/2/2
+        
+        l,r = 1,n
+        while l < r:
+            m = l+(r-l)//2
+            if m*(m+1)/2 >= n*(n+1)/2/2:
+                r = m
+            else:
+                l = m+1
+
+        if l*(l+1)/2-l/2==target:
+            return l
+        return -1
             
-        #     if temp == target:
-        #         return i
-        #     if temp >i:
-        #         return -1
-        #     temp += i
         
             
         

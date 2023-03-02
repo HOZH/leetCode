@@ -7,13 +7,14 @@
 # @lc code=start
 
 from collections import defaultdict
+from functools import lru_cache
 
 # can optimize spped by choose data structure more wisely
 
 
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        # a/b =  b/c = => a/c
+        # (a/b)*(b/c)  => a/c
         # find a path between a and c => a-b-c
         # a / a self circuit
 
@@ -39,16 +40,17 @@ class Solution:
 
         # print(graph)
         # print(max(graph))
+        lru_cache(None)
 
-        def helper(v, vis, p, end):
+        def helper(v, vis, path, end):
 
             vis[v] = True
 
             for i in graph[v]:
                 if i == end:
-                    return p+[i]
+                    return path+[i]
                 if vis[i] == False:
-                    temp = helper(i, vis, p+[i], end)
+                    temp = helper(i, vis, path+[i], end)
                     if len(temp) > 0:
                         return temp
 
@@ -67,20 +69,21 @@ class Solution:
                 return -1.0
 
             else:
-                invert = False
-                if[temp[0], temp[1]] in equations:
-                    index = equations.index([temp[0], temp[1]])
-                else:
-                    index = equations.index([temp[1], temp[0]])
-                    invert = True
+                result = 1
+                # invert = False
+                # if[temp[0], temp[1]] in equations:
+                #     index = equations.index([temp[0], temp[1]])
+                # else:
+                #     index = equations.index([temp[1], temp[0]])
+                #     invert = True
 
-                result = values[index]
-                if invert:
-                    result = 1/result
+                # result = values[index]
+                # if invert:
+                #     result = 1/result
 
-                for i in range(1, len(temp)-1):
+                for i in range(len(temp)-1):
                     invert = False
-                    if[temp[i], temp[i+1]] in equations:
+                    if [temp[i], temp[i+1]] in equations:
                         index = equations.index([temp[i], temp[i+1]])
                     else:
                         index = equations.index([temp[i+1], temp[i]])

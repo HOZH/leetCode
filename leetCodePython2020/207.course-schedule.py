@@ -9,6 +9,33 @@
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # hold_others = [[] for _ in range(numCourses)]
+        # in_d = [0] * numCourses
+        # for i, j in prerequisites:
+        #     if i == j:
+        #         return False
+        #     hold_others[i].append(j)
+        #     in_d[j] += 1
+        # finished = set()
+        # remaining = set([i for i in range(numCourses)])
+        # while len(remaining):
+        #     can_proceed = False
+        #     pending_remove = set()
+        #     for current in remaining:
+        #         if in_d[current] == 0:
+        #             can_proceed = True
+        #             finished.add(current)
+        #             pending_remove.add(current)
+        #             for j in hold_others[current]:
+        #                 in_d[j]-=1
+        #     if not can_proceed:
+        #         return False
+        #     remaining -=pending_remove
+        # return True
+
+        # return
+
+        # find cycle -> visiting means the current node had been met in previous steps
 
         in_d = [[] for _ in range(numCourses)]
 
@@ -29,6 +56,10 @@ class Solution:
                     temp = helper(i)
                     if not temp:
                         return False
+                # since previous condition is
+                # if i not in visited and i not in visiting:
+                # so this condition will only be valid if
+                # a cycle is occured
 
                 elif i in visiting:
                     return False
@@ -40,11 +71,10 @@ class Solution:
             visited.add(node)
 
             return True
-
+        # for loop is needed here because the first few node may not
+        # have in_d so we can't reach other nodes
         for i in range(numCourses):
-
             current = helper(i)
-
             if not current:
                 return False
 

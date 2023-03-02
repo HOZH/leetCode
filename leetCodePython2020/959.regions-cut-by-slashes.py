@@ -14,13 +14,13 @@ class Solution:
         ops = [[] for _ in range(n)]
 
         parents = [k for k in range(n ** 2 * 4)]
-        # rank = [1 for k in range(n ** 2 * 4)]
 
         for i in range(n):
-            for j in grid[i]:
-                ops[i].append(j)
+            # for j in grid[i]:
+            for j in range(n):
+                ops[i].append(grid[i][j])
 
-        row_index, col_index = 0, 0
+                # ops[i].append(j)
 
         def find(current):
 
@@ -48,6 +48,10 @@ class Solution:
             for j in range(n):
 
                 # base index of current block
+                # n * 4 -> size of each block
+                # i -> row index of block
+                # j -> col index of block
+                # i * 4 and j * 4 because each block has 4 sub parts
                 base = i * (n * 4) + j * 4
 
                 if ops[i][j] == '\\':

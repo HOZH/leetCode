@@ -41,7 +41,6 @@ class Solution:
                                     if temp == end:
                                         return step
                                     else:
-
                                         queue.append(temp)
                                         local_set.add(temp)
 

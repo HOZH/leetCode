@@ -9,41 +9,38 @@
 
 class Solution:
     def criticalConnections(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-
-        head = 3
-
-        graph = [[] for i in range(n)]
+        graph = [[] for _ in range(n)]
         for u, v in edges:
             graph[u].append(v)
             graph[v].append(u)
 
-        ids, low = [-1] * n, [0] * n
+        rank, lowest_group = [-1] * n, [0] * n
         id_max, bridges = 0, []
-
-        cc = set()
 
         def dfs(u, parent, bridges):
             nonlocal id_max
             id_max += 1
-            ids[u] = low[u] = id_max
+
+            rank[u] = id_max
+            lowest_group[u] = id_max
 
             for v in graph[u]:
                 if v == parent:
                     continue
-                if ids[v] == -1:
+                # v was never reached before
+                if rank[v] == -1:
                     dfs(v, u, bridges)
-                    low[u] = min(low[u], low[v])
-                    if ids[u] < low[v]:
+                    # if v (u's next node can reach to lower group and u,v are connect)
+                    # this means u can also reach to lower group -> implies back edge
+                    # so u,v is not critical edge
+                    lowest_group[u] = min(lowest_group[u], lowest_group[v])
+                    # not back edge found in farther pathing, so u,v is a critical edge
+                    if rank[u] < lowest_group[v]:
                         bridges.append([u, v])
-
-                    if low[v] >= ids[u] and u != head:
-                        cc.add(u)
-
                 else:
-                    low[u] = min(low[u], ids[v])
-        dfs(head, -1, bridges)
-        if len(graph[head]) > 1:
-            cc.add(head)
+                    lowest_group[u] = min(lowest_group[u], rank[v])
+        dfs(u, -1, bridges)
+        # return list(map(lambda x: x if x in edges else [x[1], x[0]], bridges))
         return bridges
 
 # @lc code=end

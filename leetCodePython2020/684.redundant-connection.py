@@ -21,10 +21,39 @@ class Solution:
             rank[j] = 1
 
         def find(a):
+            # step is 1, a = a's root, root[a] = root of root of a
+
+            # while roots[a] !=a:
+            #     temp = roots[a]
+            #     roots[a] = roots[roots[a]]
+            #     a=temp
+            # return a
+
+            #####
+            # 2023 revision
+            if roots[a] != a:
+                roots[a] = find(roots[a])
+
+            return roots[a]
+            #####
+        
+
+
 
             while roots[a] != a:
-                roots[a] = roots[roots[a]]
-                a = roots[a]
+                # step is 2, previous method has step = 1, a = root of a's root
+                # regradless what step is, the answer stays constant once
+                # roots[a] == a, so this is correct and faster
+                # root[a] != a
+                # so a's root = root[ a's root -> root[a]] 
+                temp = roots[roots[a]]
+                roots[a] = temp # step is 1
+                a = temp # step is 2
+
+                # short but it's the same
+
+                # roots[a] = roots[roots[a]]
+                # a = roots[a]
             return a
 
         for i, j in edges:
