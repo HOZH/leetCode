@@ -15,7 +15,8 @@ class Solution:
     #             array[i] = 1
     #     return True
     def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
-        intervals.sort() """O(num of intervals * log (numof intervals))"""
+        intervals.sort() 
+        """O(num of intervals * log (numof intervals))"""
         for i in range(1, len(intervals)):
             last, current = intervals[i-1], intervals[i]
             if current[0] < last[1]:

@@ -35,7 +35,7 @@ class Solution:
                     if nums[local_pivot] == target:
                         return local_pivot
 
-                    elif target <= nums[local_pivot]:
+                    elif nums[local_pivot] > target:
                         local_r = local_pivot-1
                     else:
                         local_l = local_pivot+1
@@ -52,8 +52,7 @@ class Solution:
 
                     if nums[local_pivot] == target:
                         return local_pivot
-
-                    elif target <= nums[local_pivot]:
+                    elif nums[local_pivot] > target:
                         local_r = local_pivot-1
                     else:
                         local_l = local_pivot+1
