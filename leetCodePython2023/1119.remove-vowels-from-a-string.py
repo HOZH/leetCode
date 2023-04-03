@@ -8,6 +8,6 @@
 class Solution:
     def removeVowels(self, s: str) -> str:
         not_valid = {'a', 'e', 'i', 'o', 'u'}
-        return ''.join(list(filter(lambda x: x not in not_valid, [*s])))
+        return ''.join(list(filter(lambda x: x not in not_valid, s)))
 
 # @lc code=end
