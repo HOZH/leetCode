@@ -14,6 +14,7 @@ class Solution:
         head_row_num, tail_row_num = ord(head_row), ord(tail_row)
         head_col_num, tail_col_num = int(head_col), int(tail_col)
         ans = []
+
         for i in range(head_row_num, tail_row_num+1):
 
             for j in range(int(head_col_num), int(tail_col_num)+1):
