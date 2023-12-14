@@ -8,6 +8,8 @@
 class Solution:
     def minimumSum(self, num: int) -> int:
         digits = sorted([*str(num)], reverse=True)
+        digits = list(map(lambda x:int(x),digits))
+        return (digits[2]+digits[3])*10+digits[1]+digits[0]
         num1 = num2 = 0
         for _ in range(2):
             num1 = 10*num1+int(digits.pop())
