@@ -12,7 +12,8 @@
 #         self.next = next
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        pre, pre.next = self, head
+        self.next = head
+        pre = self
         """
         1,2,3,4
         2,1,3,4
@@ -20,9 +21,14 @@ class Solution:
         """
         while pre.next and pre.next.next:
             a = pre.next
-            b = a.next
-            pre.next, b.next, a.next = b, a, b.next
-            pre = a
+            b= pre.next.next
+            # pre.next is the node will be executed in the next loop
+            # b.next = a and a.next = b.next means first node and sec node in the current try will be swap, and a.next points to the thrid node
+            # it's like a->b->c => b->a->c 
+            pre.next = b
+            b.next, a.next = a,b.next
+            pre = a 
+            
         return self.next
 
 
