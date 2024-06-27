@@ -8,6 +8,7 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         table = dict()
+        
         for i in range(len(nums)):
             if nums[i] not in table:
                 table[target-nums[i]]=i
@@ -16,4 +17,3 @@ class Solution:
         
         
 # @lc code=end
-
