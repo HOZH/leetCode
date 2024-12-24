@@ -23,7 +23,8 @@ class Solution:
                     while len(queue):
                         current_layer_len = len(queue)
                         while current_layer_len:
-                            current_i, current_j = queue.popleft()
+                            current_i, current_
+                            j = queue.popleft()
                             if not checked[current_i][current_j]:
                                 checked[current_i][current_j] = True
                             else:
