@@ -135,13 +135,56 @@ class Solution(object):
 class Solution:
     def guessNumber(self, n: int) -> int:
         left, right = 1, n
+        # n = [1 ... n]
+        left, right = min(n), max(n)
 
-        while left < right:
-            mid = left+(right-left)//2
+        # n = 10, pick = 6
+
+        while left < right: # 1 < 10
+        n = 10 # even - odd -> odd
+
+            # mid = (right-left)//2 -> may cause
+            mid = left+(right-left)//2 # 1 + (10-1) // 2 = 5,
             output = guess(mid)
-            if output != 1:
+            # if output != 1:
+            #     right = mid
+            # else:
+            #     left = mid+1
+
+            if output == 0:
+                return mid
+            
+            elif output == -1:
                 right = mid
-            else:
+            elif output == 1: #mid is lower than the number
                 left = mid+1
 
-        return left
+        # return left
+
+
+
+
+class Solution(object):
+    def guessNumber(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1:
+            return n
+    
+        my_guess = n
+        left = 
+
+        # n = 10, pick = 6
+        while my_guess != 0:
+            # mid, # 5,
+            curr_guess = guess(my_guess / 2)
+            if curr_guess == -1:
+                # my_guess > pick , 5 > 6? false
+                my_guess = curr_guess
+            elif curr_guess == 1: 
+                # my_guess < pick, 5 < 6? true
+                my_guess = (my_guess + curr_guess) / 2
+            else:
+                return my_guess
