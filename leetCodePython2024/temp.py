@@ -1,63 +1,97 @@
-https://leetcode.com/problems/count-and-say/description/
+
+
+class Solution:
+    def addDigits(self, n: int) -> int:
+        n_str = str(n)
+        while len(n_str) > 1:
+            temp = 0
+            for i in n_str:
+                temp += int(i)
+            n_str = str(temp)
+
+        return int(n_str)
 
 
 
-function(3) = 21  ->  2  1 function(2) -> (11) -> 21
- 1 2    
+class Solution:
+    def addDigits(self, num: int) -> int: #10
+        return 1 + (num - 1) % 9 if num else 0
 
- func(1) -> "1"
- func(2) '1' -> "11"
- func(3) "11" -> "21"
- func(4)"2 1" -> "12 11" 
- func(5) "1211" -> "11 12 21"
+class Solution(object):
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        if num < 10:
+            return num
+        
+        str_num = str(num)
+        count = 0
+        for i in str_num:
+            count += int(i)
+        
+        return self.addDigits(count)
+    
 
- class Solution(object):
-    def countAndSay(self, n):
+class Solution:
+    def __init__(self):
+        self.allowed_primes = set([2, 3, 5])
+
+    def isUgly(self, n: int) -> bool: # 14
+
+        if n < 1:
+            return False
+        if n == 1:
+            return True
+
+        if n in self.allowed_primes:
+            return True
+
+        failure_count = 0
+        for i in self.allowed_primes: # 2 -> 14 // 2 -> 7 -> isUgly(7) 
+            if n % i == 0 and self.isUgly(n // i): # 14/ 3  , 14/ 5 -> 2
+                return True
+
+            failure_count += 1
+            if failure_count == 3:
+                return False
+  
+
+
+ def isUgly(self, n):
         """
         :type n: int
-        :rtype: str
+        :rtype: bool
         """
-        if n == 1:
-            return "1"
-        count = 2
-        last_return = "1"
-        # 123141
+        if n < 1:
+            return False
 
-        # func(1) -> 1
-        # func(2) -> 11
-        # 3-> 21
-        # 4- >1211
-        # n^2 -> n = 100, nx -> 100x -> x
+        can_divide_by_two = False
+        can_divide_by_three = False
+        can_divide_by_five = False
 
+        try:
+            two_divide = n / 2 # 14 / 2 -> 7.0
+            can_divide_by_two = True
+        except Exception:
+            can_divide_by_two = False
 
-func("23456") -> func(23456)
-1213141516
-11121113111411151116
-# nx ,n  x=>2^n   n*    2^n
+        try:
+            three_divide = n / 3 # 14 / 3 -> 4.3
+            can_divide_by_three = True
+        except Exception:
+            can_divide_by_three = False
+        
+        try:
+            five_divide = n / 5 # 14 / 5 -> 2....
+            can_divide_by_five = True
+        except Exception:
+            can_divide_by_five = False
 
+        return can_divide_by_two and can_divide_by_three and can_divide_by_five
 
-        while count <= n:
-            occurence = 0
-            prev_char = None
-            # input: 1 1, 2 1
-            ans='' # 12
-            for char in last_return:
-                # this is the first character
-                if prev_char == None:
-                    occurence = 1
-
-                    prev_char = char # 1, 2
-                elif char == prev_char:
-                    occurence += 1 # 2
-                    prev_char = char
-                else:
-                    ans += str(occurence) + prev_char # 1, 2
-                    occurence = 1
-                    prev_char = char # 1 , 11
-                    #different character
-                    # ??? 
-            
-            ans+= str(occurence) + prev_char # 11, 21, 11
-            last_return = ans
-            count += 1 #3, #4
-        return last_return
+from math import sqrt
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        return sqrt(num).is_integer()
