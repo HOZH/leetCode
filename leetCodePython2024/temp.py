@@ -12,10 +12,10 @@ class Solution:
         return int(n_str)
 
 
-
 class Solution:
-    def addDigits(self, num: int) -> int: #10
+    def addDigits(self, num: int) -> int:  # 10
         return 1 + (num - 1) % 9 if num else 0
+
 
 class Solution(object):
     def addDigits(self, num):
@@ -25,20 +25,20 @@ class Solution(object):
         """
         if num < 10:
             return num
-        
+
         str_num = str(num)
         count = 0
         for i in str_num:
             count += int(i)
-        
+
         return self.addDigits(count)
-    
+
 
 class Solution:
     def __init__(self):
         self.allowed_primes = set([2, 3, 5])
 
-    def isUgly(self, n: int) -> bool: # 14
+    def isUgly(self, n: int) -> bool:  # 14
 
         if n < 1:
             return False
@@ -49,14 +49,14 @@ class Solution:
             return True
 
         failure_count = 0
-        for i in self.allowed_primes: # 2 -> 14 // 2 -> 7 -> isUgly(7) 
-            if n % i == 0 and self.isUgly(n // i): # 14/ 3  , 14/ 5 -> 2
+        for i in self.allowed_primes:  # 2 -> 14 // 2 -> 7 -> isUgly(7)
+            if n % i == 0 and self.isUgly(n // i):  # 14/ 3  , 14/ 5 -> 2
                 return True
 
             failure_count += 1
             if failure_count == 3:
                 return False
-  
+
 
 
  def isUgly(self, n):
@@ -95,3 +95,57 @@ from math import sqrt
 class Solution:
     def isPerfectSquare(self, num: int) -> bool:
         return sqrt(num).is_integer()
+
+
+def isPerfectSquare(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        if num == 1:
+            return True
+        if num == 2 or num == 3:
+            return False
+
+        # n = 2000319
+        left, right =1, num 
+        n = 2
+        while n < num:
+            result = n * n
+            if result == num:
+                return True
+            n += 1
+
+        return False
+
+
+class Solution:
+
+    def isPerfectSquare(self, num: int) -> bool:
+
+        # could use binary search to establish upper/lower bound for i to achieve a better performance
+
+        upper = num  # big enough for the testcases
+
+        lower = 0
+
+        pivot = (upper+lower)//2
+
+        while upper >= lower:
+
+            current = pivot ** 2
+            if current == num:
+
+                return True
+
+            elif current < num:
+
+                lower = pivot+1
+
+            else:
+
+                upper = pivot-1
+
+            pivot = (upper+lower)//2
+
+        return False
