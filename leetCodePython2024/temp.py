@@ -1,151 +1,72 @@
-
-
 class Solution:
-    def addDigits(self, n: int) -> int:
-        n_str = str(n)
-        while len(n_str) > 1:
-            temp = 0
-            for i in n_str:
-                temp += int(i)
-            n_str = str(temp)
+    def isHappy(self, n: int) -> bool:
+        temp = n
+        current = 0
+        seen = set()
+        while temp != 1:
+            seen.add(temp)
+            current = 0
+            for i in str(temp):   # string = 'abs', [*string]=> ['a','b','c'] [string] => ['abc']
+                current += int(i)**2
+            temp = int(current)
+            if temp in seen:
+                return False
+        return True
 
-        return int(n_str)
+
+    def isHappy(self, n: int) -> bool:
+        visited = set()
+        current = n
+        if n == 1:
+            return True
+        while current != 1:
+            current = sum([int(digit) ** 2 for digit in str(current)])
+            if current == 1:
+                return True
+            if current in visited:
+                return False
+            else:
+                visited.add(current)
+            
 
 
-class Solution:
-    def addDigits(self, num: int) -> int:  # 10
-        return 1 + (num - 1) % 9 if num else 0
 
 
 class Solution(object):
-    def addDigits(self, num):
-        """
-        :type num: int
-        :rtype: int
-        """
-        if num < 10:
-            return num
-
-        str_num = str(num)
-        count = 0
-        for i in str_num:
-            count += int(i)
-
-        return self.addDigits(count)
-
-
-class Solution:
-    def __init__(self):
-        self.allowed_primes = set([2, 3, 5])
-
-    def isUgly(self, n: int) -> bool:  # 14
-
-        if n < 1:
-            return False
-        if n == 1:
-            return True
-
-        if n in self.allowed_primes:
-            return True
-
-        failure_count = 0
-        for i in self.allowed_primes:  # 2 -> 14 // 2 -> 7 -> isUgly(7)
-            if n % i == 0 and self.isUgly(n // i):  # 14/ 3  , 14/ 5 -> 2
-                return True
-
-            failure_count += 1
-            if failure_count == 3:
-                return False
-
-
-
- def isUgly(self, n):
+    def isHappy(self, n):
         """
         :type n: int
         :rtype: bool
         """
-        if n < 1:
-            return False
-
-        can_divide_by_two = False
-        can_divide_by_three = False
-        can_divide_by_five = False
-
-        try:
-            two_divide = n / 2 # 14 / 2 -> 7.0
-            can_divide_by_two = True
-        except Exception:
-            can_divide_by_two = False
-
-        try:
-            three_divide = n / 3 # 14 / 3 -> 4.3
-            can_divide_by_three = True
-        except Exception:
-            can_divide_by_three = False
-        
-        try:
-            five_divide = n / 5 # 14 / 5 -> 2....
-            can_divide_by_five = True
-        except Exception:
-            can_divide_by_five = False
-
-        return can_divide_by_two and can_divide_by_three and can_divide_by_five
-
-from math import sqrt
-class Solution:
-    def isPerfectSquare(self, num: int) -> bool:
-        return sqrt(num).is_integer()
-
-
-def isPerfectSquare(self, num):
-        """
-        :type num: int
-        :rtype: bool
-        """
-        if num == 1:
+        if n == 1:
             return True
-        if num == 2 or num == 3:
+        ceiling = (2**31) - 1
+        if n == 2 or n == 3 or n == ceiling: # n 2**2 = 4, n = 3, 9, 81, 65, 36 + 25, 61, 37, 
             return False
-
-        # n = 2000319
-        left, right =1, num 
-        n = 2
-        while n < num:
-            result = n * n
-            if result == num:
-                return True
-            n += 1
-
-        return False
+        
+        str_num = str(n) # n = 4, 16, 37, 58, 25 + 64 = 89, .. 
+        total = 0
+        for char in str_num:
+            num = int(char)
+            total = total + (num * num)
+        
+        output = self.isHappy(total)
+        return output
 
 
-class Solution:
+        ###
+     def isHappy(self, n: int) -> bool:
+        def get_next(n):
+            total_sum = 0
+            while n > 0:
+                n, digit = divmod(n, 10)
+                total_sum += digit**2
+            return total_sum
 
-    def isPerfectSquare(self, num: int) -> bool:
+        seen = set()
+        while n != 1 and n not in seen:
+            seen.add(n)
+            n = get_next(n)
 
-        # could use binary search to establish upper/lower bound for i to achieve a better performance
+        return n == 1
 
-        upper = num  # big enough for the testcases
-
-        lower = 0
-
-        pivot = (upper+lower)//2
-
-        while upper >= lower:
-
-            current = pivot ** 2
-            if current == num:
-
-                return True
-
-            elif current < num:
-
-                lower = pivot+1
-
-            else:
-
-                upper = pivot-1
-
-            pivot = (upper+lower)//2
-
-        return False
