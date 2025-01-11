@@ -1,3 +1,10 @@
+#
+# @lc app=leetcode id=26 lang=python3
+#
+# [26] Remove Duplicates from Sorted Array
+#
+
+# @lc code=start
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         if not len(nums):
@@ -18,10 +25,4 @@ class Solution:
         return next_insertion_index
 
 
-
-temp = [item for small_list in big_list for item in small_list]
-
-
-class Solution:
-    def lengthOfLastWord(self, s: str) -> int:
-        return len(list(filter(lambda x: x != '', s.split(' ')))[-1])
+# @lc code=end
