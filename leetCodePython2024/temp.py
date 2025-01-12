@@ -1,27 +1,34 @@
-class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        if not len(nums):
-            return 0
 
-        prev = nums[0]
-        next_insertion_index = 1
 
-        for i in range(1, len(nums)):
-            current = nums[i]
-            if current == prev:
-                continue
+nums_and_operators = []
+prev = expression[0]
+for i in range(1, len(expression)):
+        current = expression[i]
+        is_current_numeric = current.isdigit()
+        if is_current_numeric:
+            if prev.isdigit():
+                prev += current
             else:
+                nums_and_operators.append(prev)
                 prev = current
-                nums[next_insertion_index] = current
-                next_insertion_index += 1
+        else:
+            nums_and_operators.append(prev)
+            prev = current
 
-        return next_insertion_index
+nums_and_operators.append(prev)
+
+def get_operation_result(num1, num2, op):
+    match op:
+        case '+':
+            return num1+num2
+        case '-':
+            return num1-num2
+        case '*':
+            return num1*num2
 
 
 
-temp = [item for small_list in big_list for item in small_list]
 
-
-class Solution:
-    def lengthOfLastWord(self, s: str) -> int:
-        return len(list(filter(lambda x: x != '', s.split(' ')))[-1])
+def multiply(a: list, b: list, operator) -> list: 
+    c = []
+    
