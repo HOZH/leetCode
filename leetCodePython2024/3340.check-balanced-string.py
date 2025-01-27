@@ -14,7 +14,7 @@ class Solution:
                 even += current
             else:
                 odd += current
-
+                
         return even == odd
 
 # @lc code=end
