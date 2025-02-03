@@ -16,23 +16,26 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        self.first, self.sec = None, None
-        self.prev = None
+        
+        self.prev, self.first, self.sec = None, None, None
 
         def in_order(node):
             if not node:
                 return
+
             in_order(node.left)
-            if self.prev is not None:
-                if self.prev.val > node.val:
-                    if self.first is None:
-                        self.first = self.prev
-                    self.sec = node
+            if self.prev is not None and self.prev.val > node.val:
+                if self.first is None:
+                    self.first = self.prev
+
+                self.sec = node
 
             self.prev = node
+
             in_order(node.right)
 
         in_order(root)
+
         self.first.val, self.sec.val = self.sec.val, self.first.val
 
 

@@ -32,7 +32,7 @@ class Solution:
             if root.left is None and root.right is None:
                 return None
 
-            # case one of the node is none -> just concatnate the remaining fork
+            # case one subtree of the node is none -> just concatnate the remaining fork
             elif root.left is None or root.right is None:
                 return root.right if root.left is None else root.left
 

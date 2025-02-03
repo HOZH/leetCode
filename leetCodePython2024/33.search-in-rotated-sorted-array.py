@@ -13,48 +13,38 @@ class Solution:
         l, r = 0, length-1
 
         while l < r:
-
             pivot = l+(r-l)//2
 
-            if nums[pivot] == target:
-                return pivot
+            if nums[l] >= nums[pivot]:
+                # left arr not sorted => right arr sorted
+                local_l, local_r = pivot+1, r
+                while local_l < local_r:
+                    local_pivot = local_l+(local_r-local_l)//2
+                    if nums[local_pivot] >= target:
+                        local_r = local_pivot
+                    else:
+                        local_l = local_pivot+1
 
-            if nums[l] < nums[pivot]:
+                if nums[local_l] == target:
+                    return local_l
+                r = pivot
+
+            else:
                 # l arr sorted
                 # bs l
 
                 local_l, local_r = l, pivot
-
                 while local_l < local_r:
-
                     local_pivot = local_l+(local_r-local_l)//2
-
-                    if nums[local_pivot] == target:
-                        return local_pivot
-
-                    elif nums[local_pivot] > target:
+                    if nums[local_pivot] >= target:
                         local_r = local_pivot
                     else:
                         local_l = local_pivot+1
+                if nums[local_l] == target:
+                    return local_l
                 # not found, searching global right arr instead
-                l = pivot
+                l = pivot+1
 
-            else:
-                # left arr not sorted => right arr sorted
-                local_l, local_r = pivot+1, r+1
+        return l if nums[l] == target else -1
 
-                while local_l < local_r:
-
-                    local_pivot = local_l+(local_r-local_l)//2
-
-                    if nums[local_pivot] == target:
-                        return local_pivot
-                    elif nums[local_pivot] > target:
-                        local_r = local_pivot
-                    else:
-                        local_l = local_pivot+1
-
-                r = pivot
-
-        return -1
 # @lc code=end
