@@ -34,7 +34,7 @@ class Solution:
         max_count = counter.most_common(1)[0][1]
         ans = []
 
-        for key, val in counter.items():3
+        for key, val in counter.items():
             if val == max_count:
                 ans.append(key)
 
