@@ -5,9 +5,12 @@
 #
 
 # @lc code=start
+from functools import lru_cache
+
+
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
-
+        @lru_cache(None)
         def helper(sub):
             if not len(sub):
                 return []
@@ -27,4 +30,3 @@ class Solution:
 
         return helper(s)
 # @lc code=end
-
