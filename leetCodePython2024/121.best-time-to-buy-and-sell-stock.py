@@ -13,12 +13,19 @@ class Solution:
         for i in range(len(prices)-1):
             diffs.append(prices[i+1]-prices[i])
 
-        best, current = float('-inf'), 0
+        # best, current = float('-inf'), 0
+        dp = [float('-inf')]*len(diffs)
+        dp[0] = diffs[0]
 
-        for i in diffs:
-            current = max(current+i, i)
-            best = max(current, best)
+        for i in range(1, len(diffs)):
+            dp[i] = max(0, dp[i-1])+diffs[i]
 
-        return max(best, 0)
+        return max(0, max(dp))
+
+        # for i in diffs:
+        #     current = max(current+i, i)
+        #     best = max(current, best)
+
+        # return max(best, 0)
 
 # @lc code=end
