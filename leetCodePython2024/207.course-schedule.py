@@ -5,10 +5,72 @@
 #
 
 # @lc code=start
-# from collections import defaultdict
+from collections import defaultdict
+
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = defaultdict(list)
+        for course, prerequisite in prerequisites:
+            graph[course].append(prerequisite)
+        ordered_completed_courses = []
+        completed = set()
+
+        visiting = set()
+
+        def helper(current):
+
+            visiting.add(current)
+            for i in graph[current]:
+                if i not in completed:
+                    if i in visiting:
+                        return False
+                    flag = helper(i)
+                    if not flag:
+                        return False
+            visiting.remove(current)
+            completed.add(current)
+            ordered_completed_courses.append(current)
+            return True
+
+        # print(graph)
+        for i in range(numCourses):
+            if i not in completed:
+                if not helper(i):
+                    return False
+        # print(ordered_completed_courses)
+
+        return len(ordered_completed_courses) == numCourses
+
+        # temp = helper(0)
+        # print(ordered_completed_courses)
+        # return temp
+
+    def canFinish_temp(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        in_d = [0 for _ in range(numCourses)]
+        graph = defaultdict(list)
+
+        for course, prerequisite in prerequisites:
+            in_d[course] += 1
+            graph[prerequisite].append(course)
+
+        zero_ins = []
+        for i in range(len(in_d)):
+            if in_d[i] == 0:
+                zero_ins.append(i)
+
+        processed = []
+        while len(zero_ins):
+            current = zero_ins.pop()
+            for i in graph[current]:
+                in_d[i] -= 1
+                if in_d[i] == 0:
+                    zero_ins.append(i)
+            processed.append(i)
+
+        return len(processed) == numCourses
+
+    def canFinish1(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         in_d = [[] for _ in range(numCourses)]
 
         visited, visiting = set(), set()
@@ -52,7 +114,7 @@ class Solution:
 
         return False
 
-    def canFinish1(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    def canFinish2(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         in_degrees = {my_key: set()
                       for my_key in [i for i in range(numCourses)]}
         for current in prerequisites:
