@@ -27,7 +27,7 @@ class Trie():
     def search(self, word):
         node = self.root
         for char in word:
-            node = node.children.get(char)
+            node = node.children[char]
             if not node:
                 return False
         return node.isWord

@@ -13,11 +13,9 @@ class Solution:
         used = [False]*k
 
         def p(nums, depth, current_list):
-
             if depth == k:
                 self.ans.append(current_list[:])
                 return
-
             for i in range(len(nums)):
                 if not used[i]:
                     used[i] = True

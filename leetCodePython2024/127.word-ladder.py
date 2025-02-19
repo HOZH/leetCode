@@ -20,14 +20,16 @@ class Solution:
         while s1 and s2:
 
             step += 1
-            # if len(s1) > len(s2):
-            #     temp = s1
-            #     s1 = s2
-            #     s2 = temp
+            if len(s1) > len(s2):
+                temp = s1
+                s1 = s2
+                s2 = temp
 
             s = set()
 
             for current in s1:
+                # print(wordList)
+
                 for i in range(len(current)):
                     for j in range(97, 123):
                         # find next potential word in wordlist
@@ -41,7 +43,6 @@ class Solution:
                             if temp in wordList:
                                 s.add(temp)
                                 wordList.remove(temp)
-
             s1 = s
 
         return 0

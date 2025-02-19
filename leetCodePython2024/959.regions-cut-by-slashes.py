@@ -45,11 +45,11 @@ class Solution:
         for i in range(n):
             for j in range(n):
 
-                # base index of current block
-                # n * 4 -> size of each block
-                # i -> row index of block
-                # j -> col index of block
-                # i * 4 and j * 4 because each block has 4 sub parts
+                # * base index of current block
+                # * n * 4 -> size of each block
+                # * i -> row index of block
+                # * j -> col index of block
+                # * i * 4 and j * 4 because each block has 4 sub parts
                 base = i * (n * 4) + j * 4
 
                 if ops[i][j] == '\\':
@@ -75,7 +75,7 @@ class Solution:
         for i in range(n*n*4):
             if i == find(i):
                 count += 1
-
+        
         return count
 
 # @lc code=end

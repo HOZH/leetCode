@@ -6,6 +6,32 @@
 
 # @lc code=start
 class Solution:
+    def combinationSum1(
+        self, candidates: List[int], target: int
+    ) -> List[List[int]]:
+
+        results = []
+
+        def backtrack(remain, comb, start):
+            if remain == 0:
+                # make a deep copy of the current combination
+                results.append(list(comb))
+                return
+            elif remain < 0:
+                # exceed the scope, stop exploration.
+                return
+
+            for i in range(start, len(candidates)):
+                # add the number into the combination
+                comb.append(candidates[i])
+                # give the current number another chance, rather than moving on
+                backtrack(remain - candidates[i], comb, i)
+                # backtrack, remove the number from the combination
+                comb.pop()
+
+        backtrack(target, [], 0)
+
+        return results
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         # can be boosted up by using heapq
         # self.result_set = set()
@@ -26,7 +52,7 @@ class Solution:
         # return list(self.result_set)
 
         self.ans = []
-        candidates.sort()
+        # candidates.sort()
 
         def helper(start_index, current_list, current_target):
             current_sum = sum(current_list)
@@ -38,12 +64,12 @@ class Solution:
 
             for i in range(start_index, len(candidates)):
                 if candidates[i] > current_target:
-                    break
+                    # break
+                    continue
 
                 helper(i, current_list+[candidates[i]], target-candidates[i])
 
         helper(0, [], target)
         return self.ans
-        
-# @lc code=end
 
+# @lc code=end

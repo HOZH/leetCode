@@ -27,7 +27,7 @@ class Codec:
         result = []
         queue = deque([root])
 
-        def helper(q, arr):
+        def pre_order_encode(q, arr):
             if len(q) <= 0:
                 return
             node = q.popleft()
@@ -39,9 +39,9 @@ class Codec:
                 q.append(node.left)
                 q.append(node.right)
 
-            helper(q, arr)
+            pre_order_encode(q, arr)
 
-        helper(queue, result)
+        pre_order_encode(queue, result)
 
         if len(result) == 1:
             return '[]'
@@ -67,6 +67,7 @@ class Codec:
             return None
 
         while len(queue) > 0:
+            # form parent node first, then left then right
             node = queue.popleft()
             left = data.popleft()
             right = data.popleft()

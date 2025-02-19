@@ -1,7 +1,14 @@
+operators = {
+    '+': lambda a, b: a + b,
+    '-': lambda a, b: a - b,
+    '*': lambda a, b: a * b,
+    # Avoid division by zero
+    '/': lambda a, b: a / b if b != 0 else float('inf'),
+    '^': lambda a, b: a ** b  # Exponentiation operator
+}
 
 
-
-
-temp = 1 
-print(1)
-print(2)
+a= operators['+'](1, 2)
+print(a)
+b = lambda a, b: a + b
+print(b(2,3))

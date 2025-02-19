@@ -14,7 +14,7 @@ class Solution:
         checked = [[False for _ in range(len(grid[0]))]
                    for _ in range(len(grid))]
         ans = 0
-        next_positions = ((0, -1), (0, +1), (-1, 0), (1, 0))
+        next_positions = ((0, -1), (0, 1), (-1, 0), (1, 0))
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if grid[i][j] == "1" and not checked[i][j]:

@@ -12,7 +12,9 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         categories = defaultdict(list)
         for i in strs:
-            key = ''.join(sorted([*i]))
+            # by counter #1#2#3#0#0#0...#0
+            # key = ''.join(sorted([*i]))
+            key = ''.join(sorted(list(i)))
             categories[key].append(i)
 
         ans = []

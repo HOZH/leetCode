@@ -12,32 +12,27 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.recent_used = OrderedDict()
-        self.cache = {}
         self.occupied_len = 0
         self.capacity = capacity
 
     def get(self, key: int) -> int:
-        if key in self.cache:
+        if key in self.recent_used:
             val = self.recent_used[key]
             del self.recent_used[key]
             self.recent_used[key] = val
-            return self.cache[key]
+            return val
         return -1
 
     def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.cache[key] = value
+        if key in self.recent_used:
             del self.recent_used[key]
             self.recent_used[key] = value
-
         else:
             if self.occupied_len == self.capacity:
-                (removed_key, _) = self.recent_used.popitem(last=False)
-                del self.cache[removed_key]
+                (_removed_key, _) = self.recent_used.popitem(last=False)
             else:
                 self.occupied_len += 1
 
-            self.cache[key] = value
             self.recent_used[key] = value
 
 

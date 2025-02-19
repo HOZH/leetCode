@@ -11,6 +11,40 @@ from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = defaultdict(list)
+        # in_degree = defaultdict(int)
+        for course, prerequisite in prerequisites:
+            graph[course].append(prerequisite)
+            # in_degree[course]=0
+            # in_degree[prerequisite]=0
+
+        in_degree = {node: 0 for node in range(numCourses)}
+        for node in graph:
+            for neighbor in graph[node]:
+                in_degree[neighbor] += 1
+
+        # 将所有入度为 0 的节点加入队列
+        queue = deque([node for node in in_degree if in_degree[node] == 0])
+
+        topo_order = []
+
+        while queue:
+            node = queue.popleft()
+            topo_order.append(node)
+
+            # 遍历邻居并减少入度
+            for neighbor in graph[node]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        # 若拓扑排序的元素数量不等于图中的节点数，说明图中存在环
+        if len(topo_order) != len(graph):
+            return False  # 图中有环，无法进行拓扑排序
+
+        return True
+    
+        ######
+        graph = defaultdict(list)
         for course, prerequisite in prerequisites:
             graph[course].append(prerequisite)
         ordered_completed_courses = []
@@ -19,7 +53,6 @@ class Solution:
         visiting = set()
 
         def helper(current):
-
             visiting.add(current)
             for i in graph[current]:
                 if i not in completed:
@@ -33,18 +66,13 @@ class Solution:
             ordered_completed_courses.append(current)
             return True
 
-        # print(graph)
         for i in range(numCourses):
             if i not in completed:
                 if not helper(i):
                     return False
-        # print(ordered_completed_courses)
 
         return len(ordered_completed_courses) == numCourses
 
-        # temp = helper(0)
-        # print(ordered_completed_courses)
-        # return temp
 
     def canFinish_temp(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         in_d = [0 for _ in range(numCourses)]
