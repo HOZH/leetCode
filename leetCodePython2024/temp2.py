@@ -170,4 +170,59 @@ class Solution:
 s[0:2][::-1]
 
 
+def checkRecord(self, s: str) -> bool:
+        absent_count = 0
+        late_count = 0
+        prev_day = ''
+        # is_late = False
 
+        for char in s:
+            if char == "A":
+                absent_count += 1
+                # if absent_count >= 2: quick return True
+            elif char == "L":
+                late_count += 1
+                if prev_day == char:
+                    late_count += 1
+                else:
+                    late_count = 0
+                if late_count >= 2:
+                    # is_late = True 
+                    return False
+            prev_day = char
+
+        # "PPALLL"
+        # P,P,A, 
+        # L, late_count = 0, late_count = 1
+        # L, L, late_count = 1, late_count = 2, 3
+        # L, L, late_count = 2
+        # LPLPLPLPL
+
+        # LLLALL
+        if absent_count >= 2 or is_late == True:
+            return False
+        return True
+
+
+
+
+class Solution:
+    # LPLPLPLPL
+
+    def checkRecord(self, s: str) -> bool:
+        absent_count = 0
+        late_count = 0
+        for i in s:
+            if i == 'L':
+                late_count += 1
+                if late_count > 2:
+                    return False
+            else:
+                if i == 'A':
+                    absent_count += 1
+                late_count = 0
+
+            if absent_count > 1:
+                return False
+
+        return True
