@@ -225,4 +225,89 @@ class Solution:
             if absent_count > 1:
                 return False
 
+
         return True
+
+
+
+
+
+class Solution:
+    global_node = 0
+
+    def start(self, root) -> int:
+        self.averageOfSubtree(root)
+        return self.global_node # int, -> # 24, 6
+
+
+    def averageOfSubtree(self, root: TreeNode): -> (?node.val, int)
+        if root is None:
+            return None, 0
+
+        left, left_total_node = self.averageOfSubtree(root.left)
+        right, right_total_node = self.averageOfSubtree(root.right)
+        total_nodes = 1
+
+        left_node_val = 0
+        right_node_val = 0
+
+        if left is not None:
+            total_nodes += left_total_node
+            left_node_val = left
+        if right is not None:
+            total_nodes += right_total_node
+            right_node_val = right
+        
+        avg_val = (root.val + left_node_val + right_node_val) // total_nodes
+        # print('curr node val: ', root.val , ' sub nodes and self: ', total_nodes, ' avg: ', avg_val)
+        if avg_val == root.val:
+            self.global_node += 1
+            # print('avg == root: curr global_node: ', self.global_node, ' global node: ', root.val)
+        
+        total_val = root.val
+        if left is not None:
+            total_val += left_node_val
+        if right is not None:
+            total_val += right_node_val
+        return total_val, total_nodes
+
+
+function outerFunction(outerVar) {
+    const someFunction = () => {}
+  function innerFunction(innerVar) {
+    console.log("Outer variable:", outerVar); // Accessing outer variable
+    console.log("Inner variable:", innerVar);
+  }
+  innerFunction();
+  return innerFunction;
+}
+
+function innerFunction(innerVar) {
+    console.log("Outer variable:", outerVar); // Accessing outer variable
+    console.log("Inner variable:", innerVar);
+  }
+
+function outer( $msg ) {
+    function inner( $msg ) {
+        echo 'inner: '.$msg.' ';
+    }
+    echo 'outer: '.$msg.' ';
+    inner( $msg );
+}
+
+
+class Solution:
+    def threeConsecutiveOdds(self, arr: List[int]) -> bool:
+        if len(arr) < 3:
+            return False
+
+        consecutive_odd = 0
+        for n in arr:
+            is_odd = (n % 2) == 1
+            if is_odd:
+                consecutive_odd += 1
+            else:
+                consecutive_odd = 0
+            
+            if consecutive_odd == 3:
+                return True
