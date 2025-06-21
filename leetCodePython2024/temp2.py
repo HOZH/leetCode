@@ -311,3 +311,46 @@ class Solution:
             
             if consecutive_odd == 3:
                 return True
+            
+
+
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        missing_nums = []
+        prev = 0
+        for i in arr:
+            missing_nums.extend(range(prev + 1, i))
+            prev = i
+        for i in range(arr[-1]+1, 2002):
+            missing_nums.append(i)
+        return missing_nums[k-1]
+
+[1].extend([2,3])
+[1,2,3]
+
+
+
+
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        last_num = arr[-1]
+        full_list = list(range(1, last_num))
+
+        arr_set = set(arr)
+
+        missing_list = []
+
+        for num in full_list:
+            if num not in arr_set:
+                missing_list.append(num)
+
+        # arr= [1,2,3,4], k = 2 , missing_list = []
+        if len(missing_list) == 0:
+            return last_num + k
+        # arr = [5,6,7,8], missing_list = [1,2,3,4], full_list = [1,2,3,4,5,6,7,8]
+        return missing_list[k - 1]
+
+
+
+        addtional_count = k - len(missing_list)
+        last_num+addtional_count

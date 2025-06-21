@@ -12,7 +12,7 @@ class Solution:
         for i in arr:
             missing_nums.extend(range(prev + 1, i))
             prev = i
-        for i in range(arr[-1]+1, 2002):
+        for i in range(arr[-1]+1, 2001):
             missing_nums.append(i)
         return missing_nums[k-1]
 
