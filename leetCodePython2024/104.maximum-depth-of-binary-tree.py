@@ -18,19 +18,23 @@ class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-
+        
         queue = deque([root])
         ans = 0
         while len(queue):
-            current_layer_len = len(queue)
-            while current_layer_len:
-                current = queue.popleft()
-                if current.left:
-                    queue.append(current.left)
-                if current.right:
-                    queue.append(current.right)
-                current_layer_len -= 1
-            ans += 1
+            current_layer_size = len(queue)
+            while current_layer_size:
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                current_layer_size -= 1
+
+            ans+=1
+        
         return ans
+
+
 
 # @lc code=end

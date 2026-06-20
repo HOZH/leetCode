@@ -11,7 +11,9 @@ class Solution:
         if not len(s):
             return True
         buffer = []
+        temp = {}
         openning = {'(', '[', '{'}
+
 
         for i in range(len(s)):
             if len(buffer):
@@ -42,3 +44,31 @@ class Solution:
 
 
 # @lc code=end
+
+from collections import deque
+from heapq import heapify, heappop, heappush
+def isValid(self, s: str) -> bool:
+        stack = []
+        paran_map = {
+            ')': '(',
+            '}': '{',
+            ']': '['
+        }
+        # input  [(, {, [, (, ] ->
+        for item in s:
+            if item in paran_map:
+                # is a closing paran
+                if len(stack) < 1: # []
+                    # closing paran and empty stack means mismatch
+                    return False
+                paran_pair = paran_map[item] # (
+                top_of_stack = stack[-1] # (
+                if paran_pair != top_of_stack:
+                    return False
+                stack.pop() # []
+            else:
+                stack.append(item) # [(]
+                
+        if len(stack) > 0:
+            return False
+        return True

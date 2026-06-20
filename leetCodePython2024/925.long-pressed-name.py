@@ -9,13 +9,23 @@ class Solution:
     def isLongPressedName(self, name: str, typed: str) -> bool:
         p1, p2 = 0, 0
         while p2 < len(typed):
+            # if name[p1] == typed[p2]: proceed to next char in both name and typed
             if p1 < len(name) and name[p1] == typed[p2]:
                 p1 += 1
                 p2 += 1
+            # if name[p1] != typed[p2] but typed[p2] is the same as previous char in typed (long pressed), proceed to next char in typed
             elif p2 != 0 and typed[p2] == typed[p2-1]:
                 p2 += 1
+            # typed[p2] is neither long pressed nor the same as name[p1], return False
             else:
                 return False
+        # return True
+        # cannot just return True
+        """
+        alexd
+        ale
+        could fail after p2 = len(typed) since p1 is not at the end of name yet
+        """
         return p1 == len(name)
 
         def get_non_dup_chars_and_substr_count(content):
@@ -59,3 +69,28 @@ class Solution:
 
 
 # @lc code=end
+
+name = "alex"
+typed = "aaleex a"
+
+def isLongPressedName(self, name: str, typed: str) -> bool:
+        n = 0
+        t = 0
+        while n < len(name) and t < len(typed):
+            char_name = name[n]
+            char_typed = typed[t]
+            if char_name == char_typed:
+                n += 1
+                t += 1
+            else:
+                while t < len(typed) and typed[t] != char_name:
+                    t += 1
+                if t >= len(typed):
+                    return False
+        
+        if n < len(name):
+            return False
+        if n < len(name) and t < len(typed):
+            if typed[t] != name[n]:
+                return False
+        return True

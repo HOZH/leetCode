@@ -14,16 +14,33 @@
 
 class Solution:
     def guessNumber(self, n: int) -> int:
-        left, right = 1, n
-
+        left, right = 0,n
         while left < right:
             mid = left+(right-left)//2
-            output = guess(mid)
-            if output != 1:
+            # mid is grater or equal to the picked number
+            if guess(mid)<1:
                 right = mid
             else:
                 left = mid+1
-
+        
         return left
 
 # @lc code=end
+def guessNumber(self, n: int) -> int:
+        left = 1
+        right = n
+        result = 1
+
+
+        while left < right:
+            mid = left + (right - left) // 2
+            result = guess(mid)
+            
+            if result == -1:
+                right = mid
+            elif result == 1:
+                left = mid + 1
+            else:
+                return mid
+        return left
+    

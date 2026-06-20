@@ -5,18 +5,30 @@
 #
 
 # @lc code=start
-from collections import deque
-
 
 class Solution:
     def removeDuplicates(self, s: str) -> str:
-        output = []
-        for ch in s:
-            if output and ch == output[-1]:
-                output.pop()
-            else:
-                output.append(ch)
-        return ''.join(output)
+        answer = []
+        for i in s:
+            remove_current = False
+            while len(answer) >0 and answer[-1] == i:
+                remove_current=True
+                answer.pop()
+            if not remove_current:
+                answer.append(i)
+
+        return ''.join(answer)
+                
+
+        
+
+        # output = []
+        # for ch in s:
+        #     if output and ch == output[-1]:
+        #         output.pop()
+        #     else:
+        #         output.append(ch)
+        # return ''.join(output)
 
         # def helper(current):
         #     if len(set([*current])) == 1:
